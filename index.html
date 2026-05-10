@@ -97,8 +97,8 @@
         .disclaimer { font-size: 0.68rem; color: #aaa; text-align: center; margin-top: 20px; line-height: 1.6; }
 
         /* ── Admin trigger (pie de página, discreta) ── */
-        .admin-trigger { display: block; text-align: center; margin-top: 28px; color: #aaa; font-size: 0.72rem; cursor: pointer; user-select: none; letter-spacing: 1px; font-family: 'Raleway', sans-serif; }
-        .admin-trigger:hover { color: #777; }
+        .admin-trigger { display: block; text-align: center; margin-top: 28px; color: #666; font-size: 1.6rem; cursor: pointer; user-select: none; }
+        .admin-trigger:hover { color: #333; }
 
         /* ── Admin modal ── */
         #modal-admin .modal { border-radius: 20px 20px 0 0; }
@@ -129,6 +129,11 @@
 </head>
 <body>
 
+<!-- ═══ FOTO HEADER ═══ -->
+<div style="width:100%; max-height:320px; overflow:hidden; line-height:0;">
+    <img src="iker.jpg" alt="Iker Orozco Hernández" style="width:100%; max-height:320px; object-fit:cover; object-position:center top; display:block;">
+</div>
+
 <!-- ═══ HEADER ═══ -->
 <div class="header">
     <h1>Unidos por Iker</h1>
@@ -138,21 +143,17 @@
 <!-- ═══ MAIN ═══ -->
 <div class="main">
 
-    <!-- Photo + Thermometer -->
-    <div class="top-grid">
-        <div class="photo-col">
-            <div class="photo-card">
-                <img src="iker.jpg" alt="Iker Orozco Hernández">
-            </div>
-            <div class="visit-box">
-                <strong>Iker tiene su celular</strong> y le anima recibir visitas
-                <strong>8am – 9pm</strong>
-            </div>
-        </div>
+    <!-- Visit box -->
+    <div class="visit-box" style="margin-bottom:14px;">
+        <strong>Iker tiene su celular</strong> y le anima recibir visitas
+        <strong>8am – 9pm</strong>
+    </div>
 
-        <div class="thermo-card">
-            <div class="thermo-title">Niveles de Plaquetas</div>
-            <div class="thermo-body">
+    <!-- Thermometer -->
+    <div class="thermo-card" style="margin-bottom:14px;">
+        <div class="thermo-title">Niveles de Plaquetas</div>
+        <div style="display:flex; gap:16px; align-items:center; justify-content:center;">
+            <div style="display:flex; gap:8px; align-items:stretch;">
                 <div class="thermo-labels">
                     <span class="lbl-critica">Crítica<br>&lt;20K</span>
                     <span>Severa<br>20–50K</span>
@@ -171,56 +172,34 @@
                     <div class="marker-line" id="marker"></div>
                 </div>
             </div>
-            <div class="thermo-value">
-                <div class="thermo-number" id="disp-actual">10,000</div>
+            <div class="thermo-value" style="margin-top:0; text-align:left;">
+                <div style="font-size:0.75rem; color:#444; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; margin-bottom:4px;">Nivel actual</div>
+                <div class="thermo-number" id="disp-actual" style="font-size:2.2rem;">10,000</div>
                 <div class="thermo-badge" id="disp-badge" style="background:#D94B4B;">⚠ Alerta Crítica</div>
-                <div class="thermo-sub" id="disp-sub">
-                    Ingresó con 2,000 · Tras transfusión: 10,000<br>
-                    Riesgo de hemorragia por debajo de 20,000
+                <div class="thermo-sub" id="disp-sub" style="margin-top:8px;">
+                    Ingresó con 2,000 · Ahora: 10,000<br>
+                    Riesgo por debajo de 20,000
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Info boxes -->
-    <div class="info-grid">
-        <div class="info-box teal">
-            <span class="label">Tratamientos de Emergencia</span>
-            <div style="font-size:0.75rem; line-height:1.6;">
-                <div style="margin-bottom:5px;">
-                    💉 <strong>Transfusión de plaquetas</strong><br>
-                    <span style="color:#555;">Plaquetas nuevas para subir niveles rápido y frenar sangrados.</span>
-                    <span style="color:#C97B5C; font-weight:600;"> $$$</span>
-                </div>
-                <div style="margin-bottom:5px;">
-                    🧪 <strong>Inmunoglobulina (IGIV)</strong><br>
-                    <span style="color:#555;">Suero que actúa en 1–2 días para evitar que el cuerpo destruya sus propias plaquetas. ~$1,000,000 MXN.</span>
-                    <span style="color:#D94B4B; font-weight:600;"> $$$$</span>
-                </div>
-                <div>
-                    💊 <strong>Corticosteroides</strong><br>
-                    <span style="color:#555;">Medicamentos que calman las defensas para que dejen de atacar las plaquetas.</span>
-                    <span style="color:#96C61C; font-weight:600;"> $$</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="info-box navy">
-            <span class="label">Un mensaje para ti</span>
-            <span style="font-size:0.76rem; line-height:1.65; color:#2A2A2A;">
-                Todo sucedió de forma muy súbita: hace unos días aparecieron moretones sin causa aparente. Tras análisis de urgencia, los médicos ordenaron hospitalización inmediata el jueves pasado — Iker ingresó con solo <strong>2,000 plaquetas</strong>.<br><br>
-                Queremos que su único enfoque hoy sea descansar y recuperarse. Este espacio es una red de amor en acción, para que Iker esté tranquilo mientras Dios y la medicina hacen su trabajo.
-            </span>
-        </div>
+    <!-- Mensaje para ti -->
+    <div class="info-box navy" style="margin-bottom:14px;">
+        <span class="label">Un mensaje para ti</span>
+        <span style="font-size:0.88rem; line-height:1.7; color:#2A2A2A;">
+            Todo sucedió de forma muy súbita: tras notar moretones sin causa aparente, Iker fue hospitalizado de emergencia el pasado jueves en Star Médica Tlalnepantla. Ingresó con solo <strong>2,000 plaquetas</strong>, un nivel de riesgo extremo (lo normal es arriba de 150,000).<br><br>
+            Hoy, gracias a Dios y al tratamiento, ya se encuentra en <strong>10,000</strong>. Contamos con el respaldo de un seguro médico, pero este no cubre el 100% de los gastos totales (coaseguros y deducibles). Esta red de amor en acción es para cubrir esos gastos.
+        </span>
     </div>
 
     <!-- Gracias -->
-    <p style="text-align:center; font-size:0.82rem; color:#2C5F7C; font-weight:600; margin-bottom:14px; font-family:'Raleway',sans-serif;">
+    <p style="text-align:center; font-size:0.9rem; color:#2C5F7C; font-weight:600; margin-bottom:16px; font-family:'Raleway',sans-serif;">
         Gracias por sus oraciones y por ser parte de este apoyo.
     </p>
 
     <!-- CTA Buttons -->
-    <div class="cta-row">
+    <div class="cta-row" style="margin-bottom:14px;">
         <button class="btn btn-navy" onclick="openModal('financial')">
             💳 Quiero ayudar financieramente
         </button>
@@ -229,13 +208,35 @@
         </button>
     </div>
 
+    <!-- Tratamientos -->
+    <div class="info-box teal" style="margin-bottom:14px;">
+        <span class="label">Tratamientos de Emergencia</span>
+        <div style="font-size:0.85rem; line-height:1.65;">
+            <div style="margin-bottom:8px;">
+                💉 <strong>Transfusión de plaquetas</strong><br>
+                <span style="color:#555;">Plaquetas nuevas para subir niveles rápido y frenar sangrados.</span>
+                <span style="color:#C97B5C; font-weight:600;"> $$$</span>
+            </div>
+            <div style="margin-bottom:8px;">
+                🧪 <strong>Inmunoglobulina (IGIV)</strong><br>
+                <span style="color:#555;">Suero que actúa en 1–2 días para evitar que el cuerpo destruya sus propias plaquetas. ~$1,000,000 MXN.</span>
+                <span style="color:#D94B4B; font-weight:600;"> $$$$</span>
+            </div>
+            <div>
+                💊 <strong>Corticosteroides</strong><br>
+                <span style="color:#555;">Medicamentos que calman las defensas para que dejen de atacar las plaquetas.</span>
+                <span style="color:#96C61C; font-weight:600;"> $$</span>
+            </div>
+        </div>
+    </div>
+
     <p class="disclaimer">
         El apoyo es voluntario y está activo por una necesidad médica real.<br>
         No somos organización de caridad · No podemos emitir recibos fiscales.
     </p>
 
     <!-- Admin trigger discreto -->
-    <span class="admin-trigger" onclick="openAdmin()">⚙ actualizar info</span>
+    <span class="admin-trigger" onclick="openAdmin()">⚙</span>
 </div>
 
 
@@ -379,26 +380,47 @@
 
 <script>
     // ── CONFIG ──────────────────────────────────────────────
-    const APPS_SCRIPT_URL = 'PEGA_TU_URL_AQUI';
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzG8BUTlicx02nInqUGIP96dhGZbvxlkNCBC1TxZnWimC-F0fM3yUfzU1rw2S0kpBNx/exec';
 
     // Contraseña del admin — cámbiala aquí si quieres
     const ADMIN_PASS = 'iker2026';
 
-    // Valores por default (lo que aparece si nadie ha editado aún)
+    // Valores por default (fallback si no hay conexión)
     const DEFAULTS = {
-        actual:  10000,
-        ingreso: 2000,
-        estado:  'Estable',
-        fecha:   '9 de mayo 2026',
-        nota:    ''
+        plaquetas_actual:  10000,
+        plaquetas_ingreso: 2000,
+        estado:            'Estable',
+        fecha:             '9 de mayo 2026',
+        nota:              ''
     };
     // ────────────────────────────────────────────────────────
 
-    // Carga datos (localStorage o defaults)
+    // Normaliza claves del Sheet al formato interno
+    function normalize(raw) {
+        return {
+            actual:  raw.plaquetas_actual  || raw.actual  || DEFAULTS.plaquetas_actual,
+            ingreso: raw.plaquetas_ingreso || raw.ingreso || DEFAULTS.plaquetas_ingreso,
+            estado:  raw.estado  || DEFAULTS.estado,
+            fecha:   raw.fecha   || DEFAULTS.fecha,
+            nota:    raw.nota    || ''
+        };
+    }
+
+    // Carga desde Sheet; fallback a localStorage/defaults
     function loadData() {
         const saved = localStorage.getItem('iker_data');
-        return saved ? JSON.parse(saved) : { ...DEFAULTS };
+        return saved ? JSON.parse(saved) : normalize(DEFAULTS);
     }
+
+    // Carga en vivo desde Google Sheet
+    fetch(APPS_SCRIPT_URL)
+        .then(r => r.json())
+        .then(raw => {
+            const data = normalize(raw);
+            localStorage.setItem('iker_data', JSON.stringify(data));
+            renderPage(data);
+        })
+        .catch(() => {}); // si falla, la página ya mostró el fallback
 
     // Calcula posición del marcador (0–170px desde abajo)
     function markerBottom(val) {
@@ -582,14 +604,32 @@ Muchas gracias por su apoyo, disponibilidad y oraciones.`;
 
     function saveAdmin() {
         const data = {
-            actual:  document.getElementById('a-actual').value  || DEFAULTS.actual,
-            ingreso: document.getElementById('a-ingreso').value || DEFAULTS.ingreso,
+            actual:  Number(document.getElementById('a-actual').value)  || DEFAULTS.plaquetas_actual,
+            ingreso: Number(document.getElementById('a-ingreso').value) || DEFAULTS.plaquetas_ingreso,
             estado:  document.getElementById('a-estado').value  || DEFAULTS.estado,
             fecha:   document.getElementById('a-fecha').value   || DEFAULTS.fecha,
             nota:    document.getElementById('a-nota').value    || ''
         };
+
+        // Guarda local inmediatamente
         localStorage.setItem('iker_data', JSON.stringify(data));
         renderPage(data);
+
+        // Guarda en Google Sheet (para todos)
+        fetch(APPS_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                tipo:               'config',
+                plaquetas_actual:   data.actual,
+                plaquetas_ingreso:  data.ingreso,
+                estado:             data.estado,
+                fecha:              data.fecha,
+                nota:               data.nota
+            })
+        });
+
         const saved = document.getElementById('admin-saved');
         saved.style.display = 'block';
         setTimeout(() => { saved.style.display = 'none'; closeModal('admin'); }, 1800);
