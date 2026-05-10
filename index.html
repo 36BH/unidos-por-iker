@@ -14,7 +14,7 @@
         /* ── Header ── */
         .header { background: white; text-align: center; padding: 24px 20px 16px; border-bottom: 1px solid #E8E8E8; }
         .header h1 { font-family: 'Raleway', sans-serif; font-weight: 800; font-size: 2rem; color: #0A2A43; font-weight: 700; }
-        .status-pill { display: inline-block; background: #5BA897; color: white; font-size: 0.72rem; padding: 4px 14px; border-radius: 20px; margin-top: 8px; letter-spacing: 0.3px; }
+        .status-pill { display: inline-block; background: #96C61C; color: #0A2A43; font-size: 0.82rem; padding: 6px 16px; border-radius: 20px; margin-top: 8px; letter-spacing: 0.3px; font-weight: 700; }
 
         /* ── Layout ── */
         .main { max-width: 520px; margin: 0 auto; padding: 20px 16px 32px; }
@@ -30,12 +30,12 @@
 
         /* ── Thermometer ── */
         .thermo-card { background: white; border-radius: 12px; border: 1px solid #E8E8E8; padding: 14px 10px; display: flex; flex-direction: column; align-items: center; }
-        .thermo-title { font-size: 0.68rem; color: #777; text-align: center; margin-bottom: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.4px; }
+        .thermo-title { font-size: 0.75rem; color: #444; text-align: center; margin-bottom: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; }
         .thermo-body { display: flex; gap: 8px; align-items: stretch; }
         .thermo-labels { display: flex; flex-direction: column-reverse; justify-content: space-between; height: 170px; }
-        .thermo-labels span { font-size: 0.58rem; color: #555; line-height: 1.2; white-space: nowrap; }
+        .thermo-labels span { font-size: 0.65rem; color: #444; line-height: 1.2; white-space: nowrap; font-weight: 500; }
         .lbl-critica { color: #D94B4B !important; font-weight: 600; }
-        .lbl-normal  { color: #5BA897 !important; font-weight: 600; }
+        .lbl-normal  { color: #96C61C !important; font-weight: 600; }
         .thermo-marker-wrap { position: relative; width: 22px; height: 170px; }
         .segs-absolute { position: absolute; inset: 0; display: flex; flex-direction: column-reverse; border-radius: 12px; overflow: hidden; }
         .seg { width: 100%; }
@@ -43,26 +43,26 @@
         .seg-severa   { background: #C97B5C; flex: 30; }
         .seg-moderada { background: #E8A84A; flex: 50; }
         .seg-leve     { background: #A3C96A; flex: 50; }
-        .seg-normal   { background: #5BA897; flex: 300; }
+        .seg-normal   { background: #96C61C; flex: 300; }
         .marker-line { position: absolute; left: -5px; width: 32px; height: 3px; background: white; border-radius: 2px; box-shadow: 0 0 4px rgba(0,0,0,0.35); transition: bottom 0.5s ease; }
         .thermo-value { text-align: center; margin-top: 10px; }
         .thermo-number { font-size: 1.5rem; font-weight: 700; color: #D94B4B; }
         .thermo-badge { display: inline-block; color: white; font-size: 0.6rem; padding: 2px 8px; border-radius: 10px; margin-top: 3px; font-weight: 600; }
-        .thermo-sub { font-size: 0.6rem; color: #888; margin-top: 4px; line-height: 1.4; }
+        .thermo-sub { font-size: 0.68rem; color: #333; margin-top: 4px; line-height: 1.5; font-weight: 500; }
 
         /* ── Info grid ── */
         .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 18px; }
-        .info-box { background: white; border-radius: 10px; border: 1px solid #E8E8E8; padding: 12px; font-size: 0.78rem; line-height: 1.5; color: #2A2A2A; }
-        .info-box.teal { border-left: 3px solid #5BA897; }
+        .info-box { background: white; border-radius: 10px; border: 1px solid #E8E8E8; padding: 12px; font-size: 0.85rem; line-height: 1.6; color: #2A2A2A; }
+        .info-box.teal { border-left: 3px solid #96C61C; }
         .info-box.navy { border-left: 3px solid #0A2A43; }
-        .info-box .label { font-size: 0.62rem; color: #888; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 5px; }
+        .info-box .label { font-size: 0.7rem; color: #444; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 5px; }
 
         /* ── CTA Buttons ── */
         .cta-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .btn { padding: 15px 10px; border-radius: 10px; border: none; font-family: 'Raleway', sans-serif; font-size: 0.82rem; font-weight: 600; cursor: pointer; line-height: 1.35; transition: opacity 0.15s, transform 0.1s; }
         .btn:active { transform: scale(0.97); }
         .btn-navy { background: #0A2A43; color: white; }
-        .btn-teal  { background: #5BA897; color: white; }
+        .btn-teal  { background: #96C61C; color: white; }
 
         /* ── Modal ── */
         .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(10,42,67,0.55); z-index: 200; justify-content: center; align-items: flex-end; }
@@ -79,18 +79,18 @@
         .bank-row-left .lbl { font-size: 0.65rem; color: #888; }
         .bank-row-left .val { font-size: 0.92rem; font-weight: 600; color: #0A2A43; word-break: break-all; }
         .copy-btn { background: #0A2A43; color: white; border: none; border-radius: 6px; padding: 5px 12px; font-size: 0.68rem; cursor: pointer; white-space: nowrap; flex-shrink: 0; transition: background 0.15s; }
-        .copy-btn.copied { background: #5BA897; }
+        .copy-btn.copied { background: #96C61C; }
         .bank-note { font-size: 0.72rem; color: #666; background: #FBF8F3; border-radius: 8px; padding: 10px 12px; margin-top: 10px; line-height: 1.55; }
-        #copy-toast { display: none; text-align: center; color: #5BA897; font-size: 0.78rem; margin-top: 8px; font-weight: 500; }
+        #copy-toast { display: none; text-align: center; color: #96C61C; font-size: 0.78rem; margin-top: 8px; font-weight: 500; }
 
         /* Form */
         .form-group { margin-bottom: 13px; }
         .form-group label { display: block; font-size: 0.78rem; font-weight: 600; color: #0A2A43; margin-bottom: 4px; }
         .form-group input, .form-group select { width: 100%; padding: 10px 12px; border: 1.5px solid #E8E8E8; border-radius: 8px; font-family: 'Raleway', sans-serif; font-size: 0.88rem; color: #2A2A2A; background: white; transition: border-color 0.15s; }
-        .form-group input:focus, .form-group select:focus { outline: none; border-color: #5BA897; }
-        .submit-btn { width: 100%; padding: 14px; background: #5BA897; color: white; border: none; border-radius: 10px; font-family: 'Raleway', sans-serif; font-size: 0.95rem; font-weight: 600; cursor: pointer; margin-top: 6px; transition: opacity 0.15s; }
+        .form-group input:focus, .form-group select:focus { outline: none; border-color: #96C61C; }
+        .submit-btn { width: 100%; padding: 14px; background: #96C61C; color: white; border: none; border-radius: 10px; font-family: 'Raleway', sans-serif; font-size: 0.95rem; font-weight: 600; cursor: pointer; margin-top: 6px; transition: opacity 0.15s; }
         .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-        .success-msg { display: none; background: #e8f6f3; border: 1.5px solid #5BA897; border-radius: 10px; padding: 18px; text-align: center; color: #2C5F7C; font-size: 0.88rem; line-height: 1.6; margin-top: 10px; }
+        .success-msg { display: none; background: #e8f6f3; border: 1.5px solid #96C61C; border-radius: 10px; padding: 18px; text-align: center; color: #2C5F7C; font-size: 0.88rem; line-height: 1.6; margin-top: 10px; }
         .success-msg strong { display: block; font-size: 1rem; color: #0A2A43; margin-bottom: 6px; }
 
         /* Disclaimer */
@@ -106,9 +106,9 @@
         .admin-field { margin-bottom: 14px; }
         .admin-field label { display: block; font-size: 0.75rem; font-weight: 600; color: #0A2A43; margin-bottom: 4px; }
         .admin-field input { width: 100%; padding: 10px 12px; border: 1.5px solid #E8E8E8; border-radius: 8px; font-size: 0.9rem; font-family: 'Raleway', sans-serif; }
-        .admin-field input:focus { outline: none; border-color: #5BA897; }
+        .admin-field input:focus { outline: none; border-color: #96C61C; }
         .admin-save { width: 100%; padding: 13px; background: #0A2A43; color: white; border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 600; cursor: pointer; font-family: 'Raleway', sans-serif; margin-top: 4px; }
-        .admin-saved { display: none; text-align: center; color: #5BA897; font-size: 0.82rem; margin-top: 10px; font-weight: 600; }
+        .admin-saved { display: none; text-align: center; color: #96C61C; font-size: 0.82rem; margin-top: 10px; font-weight: 600; }
         .admin-note { font-size: 0.68rem; color: #aaa; text-align: center; margin-top: 10px; line-height: 1.5; }
 
         /* ── Password prompt ── */
@@ -200,7 +200,7 @@
                 <div>
                     💊 <strong>Corticosteroides</strong><br>
                     <span style="color:#555;">Medicamentos que calman las defensas para que dejen de atacar las plaquetas.</span>
-                    <span style="color:#5BA897; font-weight:600;"> $$</span>
+                    <span style="color:#96C61C; font-weight:600;"> $$</span>
                 </div>
             </div>
         </div>
@@ -270,7 +270,7 @@
             <p style="font-size:0.8rem; color:#555; margin-bottom:12px; line-height:1.55;">
                 Si estás fuera de México y prefieres donar en dólares o con tarjeta internacional, puedes hacerlo a través de GoFundMe.
             </p>
-            <button onclick="window.open('https://gofund.me/ff7bc931a','_blank')" style="display:block; width:100%; text-align:center; background:#5BA897; color:white; padding:13px; border-radius:10px; font-size:0.9rem; font-weight:700; border:none; cursor:pointer; font-family:'Raleway',sans-serif;">
+            <button onclick="window.open('https://gofund.me/ff7bc931a','_blank')" style="display:block; width:100%; text-align:center; background:#96C61C; color:white; padding:13px; border-radius:10px; font-size:0.9rem; font-weight:700; border:none; cursor:pointer; font-family:'Raleway',sans-serif;">
                 🌎 Donaciones internacionales
             </button>
         </div>
@@ -292,14 +292,14 @@
         <p style="margin-bottom:16px; font-size:0.78rem; color:#2A2A2A; text-align:center; font-weight:600;">Nos pondremos en contacto contigo en cuanto se necesiten donadores.</p>
 
         <!-- Info de donación -->
-        <div id="donor-info" style="background:#f0f8f6; border:1.5px solid #5BA897; border-radius:12px; padding:14px 16px; font-size:0.78rem; line-height:1.65; color:#2A2A2A;">
+        <div id="donor-info" style="background:#f0f8f6; border:1.5px solid #96C61C; border-radius:12px; padding:14px 16px; font-size:0.78rem; line-height:1.65; color:#2A2A2A;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
                 <strong style="font-size:0.85rem; color:#0A2A43;">Donación de Plaquetas para Iker Orozco Hernández</strong>
                 <button onclick="copyDonorInfo(this)" style="background:#0A2A43; color:white; border:none; border-radius:6px; padding:5px 12px; font-size:0.68rem; cursor:pointer; font-family:'Raleway',sans-serif; white-space:nowrap; flex-shrink:0;">Copiar</button>
             </div>
 
             <div style="margin-bottom:8px;">
-                <span style="font-size:0.65rem; color:#5BA897; font-weight:700; text-transform:uppercase; letter-spacing:0.5px;">Datos del Paciente y Ubicación</span><br>
+                <span style="font-size:0.65rem; color:#96C61C; font-weight:700; text-transform:uppercase; letter-spacing:0.5px;">Datos del Paciente y Ubicación</span><br>
                 🏥 <strong>Paciente:</strong> Iker Orozco Hernández<br>
                 🏨 <strong>Hospital:</strong> Star Médica Tlalnepantla (Nivel 1, Banco de Sangre)<br>
                 📍 <strong>Dirección:</strong> Sor Juana Inés de la Cruz No. 280, Tlalnepantla de Baz<br>
@@ -308,7 +308,7 @@
             </div>
 
             <div style="margin-bottom:8px;">
-                <span style="font-size:0.65rem; color:#5BA897; font-weight:700; text-transform:uppercase; letter-spacing:0.5px;">Requisitos Principales</span><br>
+                <span style="font-size:0.65rem; color:#96C61C; font-weight:700; text-transform:uppercase; letter-spacing:0.5px;">Requisitos Principales</span><br>
                 • Identificación oficial vigente (INE o Pasaporte)<br>
                 • Edad entre 18–65 años y peso mayor a 50 kg<br>
                 • No haber tomado aspirinas, ibuprofeno o desinflamatorios en los últimos 3 días<br>
@@ -413,7 +413,7 @@
         if (val < 50000)  return { bg: '#C97B5C', text: '⚠ Severa' };
         if (val < 100000) return { bg: '#E8A84A', text: 'Moderada' };
         if (val < 150000) return { bg: '#A3C96A', text: 'Leve' };
-        return { bg: '#5BA897', text: '✓ Normal' };
+        return { bg: '#96C61C', text: '✓ Normal' };
     }
 
     // Renderiza la página con los datos guardados
@@ -546,7 +546,7 @@ Muchas gracias por su apoyo, disponibilidad y oraciones.`;
         navigator.clipboard.writeText(text).then(() => {
             const orig = btn.textContent;
             btn.textContent = '✓ Copiado';
-            btn.style.background = '#5BA897';
+            btn.style.background = '#96C61C';
             setTimeout(() => {
                 btn.textContent = orig;
                 btn.style.background = '#0A2A43';
