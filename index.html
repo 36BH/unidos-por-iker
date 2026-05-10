@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unidos por Iker — Apoyo médico coordinado</title>
+  <meta name="description" content="Plataforma respetuosa y transparente de coordinación de apoyo médico para Iker Orozco Hernández. Las intenciones de apoyo se activan solo cuando aparecen necesidades médicas reales.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- ─── CONFIGURACIÓN — cambiar aquí ────────────────────
+       Reemplaza el número con el WhatsApp real de la mamá
+       de Iker. Usa formato internacional sin espacios ni "+".
+       Ejemplo MX: 521555... · Ejemplo CA: 1604...
+  -->
+  <script>
+    window.IKER_CONFIG = {
+      whatsapp: "5215555555555",   // ← REEMPLAZAR con número real
+      latestNews: "./noticias.html" // ← Página de últimas noticias (por crear)
+    };
+  </script>
+
+  <style>
+    :root {
+      --navy: #0A2A43;
+      --blue: #2C5F7C;
+      --teal: #5BA897;
+      --teal-dark: #4A8F80;
+      --cream: #FBF8F3;
+      --card: #FFFFFF;
+      --charcoal: #2A2A2A;
+      --gray: #E8E8E8;
+      --gray-soft: #F2F0EC;
+      --critical: #D94B4B;
+      --severe: #E07B4B;
+      --moderate: #F0B95C;
+      --mild: #F4D77A;
+      --normal: #7FC9A8;
+      --whatsapp: #25D366;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, system-ui, sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      line-height: 1.55;
+      font-size: 16px;
+    }
+
+    /* ── Top bar ───────────────────────────────── */
+    .topbar {
+      background: var(--card);
+      border-bottom: 1px solid var(--gray);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .topbar .brand {
+      font-family: 'Lora', Georgia, serif;
+      font-weight: 600;
+      color: var(--navy);
+      font-size: 1.0625rem;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .news-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      background: var(--cream);
+      border: 1px solid var(--navy);
+      color: var(--navy);
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+    .news-btn:hover {
+      background: var(--navy);
+      color: white;
+    }
+    .news-btn svg { width: 14px; height: 14px; }
+    .lang-toggle {
+      display: flex;
+      gap: 4px;
+      font-size: 0.875rem;
+      background: var(--gray-soft);
+      border-radius: 8px;
+      padding: 3px;
+    }
+    .lang-toggle a {
+      padding: 5px 10px;
+      border-radius: 6px;
+      text-decoration: none;
+      color: var(--blue);
+      font-weight: 500;
+      transition: all 0.15s ease;
+    }
+    .lang-toggle a.active {
+      background: var(--navy);
+      color: white;
+    }
+    @media (max-width: 540px) {
+      .news-btn .news-label { display: none; }
+      .news-btn { padding: 8px 10px; }
+    }
+
+    /* ── Status pill ───────────────────────────── */
+    .status-bar {
+      background: var(--gray-soft);
+      padding: 10px 24px;
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--blue);
+      border-bottom: 1px solid var(--gray);
+    }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--critical);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    /* ── Hero ──────────────────────────────────── */
+    .hero {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 56px 24px 24px;
+      text-align: center;
+    }
+    h1.title {
+      font-family: 'Lora', Georgia, serif;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: clamp(2.5rem, 6.5vw, 4.25rem);
+      letter-spacing: -0.025em;
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+    .lede {
+      max-width: 640px;
+      margin: 0 auto;
+      color: var(--blue);
+      font-size: 1.0625rem;
+      line-height: 1.6;
+    }
+
+    /* ── Two-column visual section ─────────────── */
+    .visual {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 768px) {
+      .visual { grid-template-columns: 1fr; }
+    }
+    .col {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .card {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 24px;
+      border: 1px solid var(--gray);
+      box-shadow: 0 1px 3px rgba(10, 42, 67, 0.04);
+    }
+
+    /* ── Photo card ────────────────────────────── */
+    .photo-card {
+      padding: 0;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #E8EEF2 0%, #D4DEE5 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue);
+      font-size: 0.9375rem;
+      text-align: center;
+      padding: 40px;
+      position: relative;
+    }
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .photo-placeholder {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+    }
+    .photo-placeholder svg {
+      width: 48px;
+      height: 48px;
+      opacity: 0.5;
+    }
+
+    /* ── Treatment info card ───────────────────── */
+    .treatment-card {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+    .treatment-icon {
+      width: 80px;
+      height: 80px;
+      flex-shrink: 0;
+    }
+    .treatment-text h3 {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.0625rem;
+      color: var(--navy);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    .treatment-text p {
+      font-size: 0.9375rem;
+      color: var(--charcoal);
+      line-height: 1.5;
+    }
+    .treatment-text strong { color: var(--navy); font-weight: 600; }
+
+    /* ── Thermometer card ──────────────────────── */
+    .thermo-card {
+      padding: 28px 24px;
+    }
+    .thermo-title {
+      text-align: center;
+      font-family: 'Lora', Georgia, serif;
+      font-weight: 600;
+      color: var(--blue);
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+    .thermo-wrap {
+      display: grid;
+      grid-template-columns: 1fr 60px;
+      gap: 20px;
+      align-items: stretch;
+    }
+    .thermo-scale {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.8125rem;
+    }
+    .thermo-row {
+      padding: 12px 14px;
+      border-radius: 10px;
+      color: white;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .thermo-row .range {
+      font-weight: 400;
+      font-size: 0.75rem;
+      opacity: 0.9;
+    }
+    .row-normal { background: var(--normal); }
+    .row-mild   { background: var(--mild); color: var(--charcoal); }
+    .row-mod    { background: var(--moderate); color: var(--charcoal); }
+    .row-sev    { background: var(--severe); }
+    .row-crit   {
+      background: var(--critical);
+      box-shadow: 0 0 0 3px rgba(217, 75, 75, 0.2);
+      position: relative;
+    }
+    .row-crit::after {
+      content: "← Iker";
+      position: absolute;
+      right: -56px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--critical);
+      font-weight: 700;
+      font-size: 0.8125rem;
+      white-space: nowrap;
+    }
+
+    .thermo-tube {
+      background: var(--gray-soft);
+      border-radius: 30px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--gray);
+    }
+    .thermo-fill {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, var(--critical) 0%, var(--severe) 25%, var(--moderate) 50%, var(--mild) 75%, var(--normal) 100%);
+      border-radius: 0 0 30px 30px;
+    }
+    .thermo-bulb {
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 56px;
+      height: 56px;
+      background: var(--critical);
+      border-radius: 50%;
+      box-shadow: 0 4px 12px rgba(217, 75, 75, 0.35);
+    }
+
+    /* ── Alert info card ───────────────────────── */
+    .alert-card {
+      background: white;
+      border: 1px solid var(--gray);
+      border-radius: 14px;
+      padding: 18px 20px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .alert-number {
+      flex-shrink: 0;
+      background: var(--critical);
+      color: white;
+      padding: 12px 14px;
+      border-radius: 10px;
+      text-align: center;
+      min-width: 88px;
+    }
+    .alert-number .num {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1;
+      display: block;
+    }
+    .alert-number .label {
+      font-size: 0.6875rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+    .alert-text { font-size: 0.875rem; color: var(--charcoal); line-height: 1.55; }
+    .alert-text strong { color: var(--navy); font-weight: 600; display: block; margin-bottom: 4px; font-size: 0.9375rem; }
+
+    /* ── CTA section ───────────────────────────── */
+    .cta-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 8px 24px 56px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 768px) {
+      .cta-section { grid-template-columns: 1fr; }
+    }
+    .cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 22px 24px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 1.0625rem;
+      text-align: center;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(10, 42, 67, 0.1);
+      line-height: 1.3;
+      cursor: pointer;
+    }
+    .cta svg { width: 22px; height: 22px; flex-shrink: 0; }
+    .cta-primary {
+      background: var(--blue);
+      color: white;
+    }
+    .cta-primary:hover {
+      background: var(--navy);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(10, 42, 67, 0.18);
+    }
+    .cta-secondary {
+      background: var(--teal);
+      color: white;
+    }
+    .cta-secondary:hover {
+      background: var(--teal-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(91, 168, 151, 0.3);
+    }
+
+    /* ── How it works ──────────────────────────── */
+    .how {
+      background: white;
+      border-top: 1px solid var(--gray);
+      padding: 56px 24px;
+    }
+    .how-inner { max-width: 1000px; margin: 0 auto; }
+    .how h2 {
+      font-family: 'Lora', Georgia, serif;
+      color: var(--navy);
+      font-size: 1.875rem;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .how-sub { text-align: center; color: var(--blue); margin-bottom: 40px; font-size: 0.9375rem; }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 768px) {
+      .steps { grid-template-columns: 1fr; }
+    }
+    .step {
+      text-align: center;
+      padding: 20px;
+    }
+    .step-num {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--cream);
+      color: var(--navy);
+      font-family: 'Lora', Georgia, serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 14px;
+      border: 2px solid var(--navy);
+    }
+    .step h3 {
+      font-family: 'Lora', Georgia, serif;
+      color: var(--navy);
+      font-size: 1.125rem;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    .step p { color: var(--charcoal); font-size: 0.9375rem; }
+
+    /* ── Trust strip ───────────────────────────── */
+    .trust {
+      background: var(--gray-soft);
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .trust-inner { max-width: 880px; margin: 0 auto; }
+    .trust h2 {
+      font-family: 'Lora', Georgia, serif;
+      color: var(--navy);
+      font-size: 1.5rem;
+      margin-bottom: 24px;
+    }
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 600px) {
+      .trust-grid { grid-template-columns: 1fr; }
+    }
+    .trust-item {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid var(--gray);
+    }
+    .trust-num {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 2rem;
+      color: var(--navy);
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .trust-label { font-size: 0.8125rem; color: var(--blue); }
+    .trust-link {
+      display: inline-block;
+      margin-top: 24px;
+      color: var(--navy);
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px solid var(--navy);
+    }
+
+    /* ── Floating WhatsApp button ──────────────── */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--whatsapp);
+      color: white;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+      z-index: 60;
+      transition: transform 0.2s ease;
+      text-decoration: none;
+    }
+    .whatsapp-float:hover { transform: scale(1.08); }
+    .whatsapp-float svg { width: 30px; height: 30px; }
+
+    /* ── Footer ────────────────────────────────── */
+    footer {
+      background: var(--navy);
+      color: white;
+      padding: 40px 24px;
+      text-align: center;
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+    footer a { color: var(--teal); text-decoration: none; }
+    .disclaimer { opacity: 0.75; margin-top: 12px; font-size: 0.8125rem; }
+  </style>
+</head>
+<body>
+
+  <!-- Top bar -->
+  <header class="topbar">
+    <a href="./" class="brand">Unidos por Iker</a>
+    <div class="topbar-actions">
+      <a href="#" id="news-link" class="news-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+          <path d="M18 14h-8M15 18h-5M10 6h8v4h-8z"/>
+        </svg>
+        <span class="news-label">Ver últimas noticias</span>
+      </a>
+      <nav class="lang-toggle" aria-label="Idioma">
+        <a href="./" class="active" aria-current="page">ES</a>
+        <a href="./en/">EN</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Status pill -->
+  <div class="status-bar">
+    <span class="status-pill">
+      <span class="status-dot" aria-hidden="true"></span>
+      Alerta crítica activa &middot; Última actualización 9 de mayo de 2026
+    </span>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1 class="title">Unidos por Iker</h1>
+    <p class="lede">
+      Plataforma respetuosa y transparente para coordinar apoyo médico.
+      Las intenciones se registran ahora y se activan únicamente cuando aparece
+      una necesidad médica real.
+    </p>
+  </section>
+
+  <!-- Two-column visual section -->
+  <section class="visual">
+
+    <!-- Left column: photo + treatment info -->
+    <div class="col">
+      <div class="card photo-card" role="img" aria-label="Espacio reservado para foto de Iker (con consentimiento de la familia)">
+        <!-- Reemplazar este placeholder con: <img src="./assets/img/iker.jpg" alt="Iker en el hospital"> -->
+        <div class="photo-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="5" width="18" height="14" rx="2"/>
+            <circle cx="8" cy="10" r="2"/>
+            <path d="M3 17l5-5 4 4 3-3 6 6"/>
+          </svg>
+          <span>Foto de Iker<br><small style="opacity:0.7">(agregar con consentimiento familiar)</small></span>
+        </div>
+      </div>
+
+      <div class="card treatment-card">
+        <svg class="treatment-icon" viewBox="0 0 80 80" fill="none">
+          <rect x="14" y="20" width="34" height="44" rx="4" fill="#E8F1F4" stroke="#2C5F7C" stroke-width="1.5"/>
+          <rect x="20" y="26" width="22" height="6" rx="1" fill="#5BA897"/>
+          <rect x="20" y="36" width="22" height="3" rx="1" fill="#2C5F7C" opacity="0.4"/>
+          <rect x="20" y="42" width="16" height="3" rx="1" fill="#2C5F7C" opacity="0.4"/>
+          <circle cx="55" cy="54" r="10" fill="#2C5F7C"/>
+          <path d="M52 54l2.5 2.5L60 51" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="14" y="64" width="34" height="4" rx="1" fill="#2C5F7C" opacity="0.3"/>
+        </svg>
+        <div class="treatment-text">
+          <h3>Tratamiento en evaluación</h3>
+          <p>
+            Se evalúa aplicar <strong>inmunoglobulina humana</strong>, un tratamiento
+            de alta calidad <strong>pero muy costoso</strong>, con un valor cercano
+            al <strong>millón de pesos</strong>. Un refuerzo de "élite" para su sistema inmune.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right column: thermometer + alert info -->
+    <div class="col">
+      <div class="card thermo-card">
+        <div class="thermo-title">Niveles de plaquetas</div>
+        <div class="thermo-wrap">
+          <div class="thermo-scale">
+            <div class="thermo-row row-normal">
+              <span>Rango normal</span>
+              <span class="range">150 000 – 450 000</span>
+            </div>
+            <div class="thermo-row row-mild">
+              <span>Trombocitopenia leve</span>
+              <span class="range">100 000 – 150 000</span>
+            </div>
+            <div class="thermo-row row-mod">
+              <span>Moderada</span>
+              <span class="range">50 000 – 100 000</span>
+            </div>
+            <div class="thermo-row row-sev">
+              <span>Severa</span>
+              <span class="range">20 000 – 50 000</span>
+            </div>
+            <div class="thermo-row row-crit">
+              <span>Alerta crítica</span>
+              <span class="range">&lt; 20 000</span>
+            </div>
+          </div>
+          <div class="thermo-tube" aria-hidden="true">
+            <div class="thermo-fill" style="height: 6%;"></div>
+            <div class="thermo-bulb"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert-card">
+        <div class="alert-number">
+          <span class="num">10,000</span>
+          <span class="label">Actualmente</span>
+        </div>
+        <div class="alert-text">
+          <strong>Riesgo de hemorragia</strong>
+          Iker ingresó con 3,000 plaquetas y hoy se encuentra en 10,000.
+          Aunque ha mejorado, sigue muy por debajo del nivel de seguridad
+          (cualquier valor por debajo de 20,000 se considera crítico).
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- CTAs (open WhatsApp directly) -->
+  <section class="cta-section" aria-label="Formas de apoyar">
+    <a href="#" id="cta-financial" class="cta cta-primary" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.815 9.815 0 0 0 12.04 2zm0 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23a8.221 8.221 0 0 1-4.21-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.264 8.264 0 0 1-1.26-4.38c.01-4.54 3.7-8.24 8.27-8.24z"/>
+      </svg>
+      Quiero expresar mi intención de apoyo financiero
+    </a>
+    <a href="#" id="cta-platelets" class="cta cta-secondary" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.815 9.815 0 0 0 12.04 2zm0 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23a8.221 8.221 0 0 1-4.21-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.264 8.264 0 0 1-1.26-4.38c.01-4.54 3.7-8.24 8.27-8.24z"/>
+      </svg>
+      Quiero ofrecer donación de plaquetas
+    </a>
+  </section>
+
+  <!-- How it works -->
+  <section class="how" id="como-funciona">
+    <div class="how-inner">
+      <h2>Cómo funciona</h2>
+      <p class="how-sub">Esto no es una colecta. Es un sistema de coordinación.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Registras tu intención</h3>
+          <p>Nos dices si y cómo te gustaría apoyar. No se solicita dinero en este momento.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Te contactamos cuando es necesario</h3>
+          <p>Solo cuando aparece un gasto médico real que coincida con tu intención.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Apoyas directamente</h3>
+          <p>Pagas al hospital, farmacia o proveedor directo. Recibo en mano y registrado.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust strip -->
+  <section class="trust">
+    <div class="trust-inner">
+      <h2>Transparencia en tiempo real</h2>
+      <div class="trust-grid">
+        <div class="trust-item">
+          <div class="trust-num">0</div>
+          <div class="trust-label">Intenciones registradas</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-num">$0</div>
+          <div class="trust-label">Apoyos aplicados (CAD equiv.)</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-num">1</div>
+          <div class="trust-label">Necesidad médica abierta</div>
+        </div>
+      </div>
+      <a href="./transparencia.html" class="trust-link">Ver el panel completo →</a>
+    </div>
+  </section>
+
+  <!-- Floating WhatsApp -->
+  <a href="#" id="float-wa" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Abrir chat de WhatsApp con la familia">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.815 9.815 0 0 0 12.04 2zm0 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23a8.221 8.221 0 0 1-4.21-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.264 8.264 0 0 1-1.26-4.38c.01-4.54 3.7-8.24 8.27-8.24zm-4.52 4.6c-.22 0-.58.08-.88.41-.31.32-1.16 1.13-1.16 2.76s1.19 3.21 1.36 3.43c.16.21 2.3 3.68 5.69 5.01 2.83 1.11 3.4.89 4.02.83.62-.05 1.99-.81 2.27-1.6.28-.79.28-1.46.2-1.6-.09-.14-.32-.22-.66-.39-.34-.18-1.99-.98-2.3-1.09-.31-.11-.54-.17-.76.17-.22.34-.86 1.09-1.06 1.31-.19.21-.39.24-.73.07-.34-.18-1.42-.52-2.71-1.67-1-.89-1.67-1.99-1.86-2.32-.19-.34-.02-.52.15-.69.16-.16.36-.41.54-.62.18-.21.24-.36.36-.6.12-.24.06-.45-.02-.62-.08-.18-.74-1.79-1.04-2.45-.27-.65-.55-.56-.74-.57-.19-.01-.41-.02-.63-.02z"/>
+    </svg>
+  </a>
+
+  <!-- Footer -->
+  <footer>
+    <p><strong>Unidos por Iker</strong> · Iker Orozco Hernández</p>
+    <p class="disclaimer">
+      No es una organización benéfica registrada. No se emiten recibos deducibles de impuestos.
+      No sustituye asesoría médica. Todo apoyo es voluntario y condicional a una necesidad médica real.
+    </p>
+    <p class="disclaimer">
+      <a href="./en/">English version</a> · <a href="./privacidad.html">Privacidad</a> · <a href="./transparencia.html">Transparencia</a>
+    </p>
+  </footer>
+
+  <script>
+    // Build WhatsApp links from config
+    (function() {
+      var phone = window.IKER_CONFIG.whatsapp;
+      var base = "https://wa.me/" + phone + "?text=";
+
+      var msgFinancial = encodeURIComponent(
+        "Hola, vi la página de Unidos por Iker y quiero expresar mi intención de apoyo financiero. ¿Me pueden compartir más detalles cuando aparezca una necesidad médica concreta? Gracias."
+      );
+      var msgPlatelets = encodeURIComponent(
+        "Hola, vi la página de Unidos por Iker y quiero ofrecer donación de plaquetas. ¿Me pueden compartir la dirección del banco de sangre, horarios y los datos del paciente? Gracias."
+      );
+      var msgGeneral = encodeURIComponent(
+        "Hola, vi la página de Unidos por Iker y quisiera comunicarme con la familia."
+      );
+
+      document.getElementById("cta-financial").href = base + msgFinancial;
+      document.getElementById("cta-platelets").href = base + msgPlatelets;
+      document.getElementById("float-wa").href = base + msgGeneral;
+      document.getElementById("news-link").href = window.IKER_CONFIG.latestNews;
+    })();
+  </script>
+
+</body>
+</html>
