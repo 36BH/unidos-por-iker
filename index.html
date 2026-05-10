@@ -1,790 +1,602 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Unidos por Iker — Apoyo médico coordinado</title>
-  <meta name="description" content="Plataforma respetuosa y transparente de coordinación de apoyo médico para Iker Orozco Hernández. Las intenciones de apoyo se activan solo cuando aparecen necesidades médicas reales.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Unidos por Iker">
+    <meta property="og:description" content="Iker necesita nuestro apoyo. Así puedes ayudar.">
+    <title>Unidos por Iker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Raleway', sans-serif; background: #FBF8F3; color: #2A2A2A; min-height: 100vh; }
 
-  <!-- ─── CONFIGURACIÓN — cambiar aquí ────────────────────
-       Reemplaza el número con el WhatsApp real de la mamá
-       de Iker. Usa formato internacional sin espacios ni "+".
-       Ejemplo MX: 521555... · Ejemplo CA: 1604...
-  -->
-  <script>
-    window.IKER_CONFIG = {
-      whatsapp: "5215555555555",   // ← REEMPLAZAR con número real
-      latestNews: "./noticias.html" // ← Página de últimas noticias (por crear)
-    };
-  </script>
+        /* ── Header ── */
+        .header { background: white; text-align: center; padding: 24px 20px 16px; border-bottom: 1px solid #E8E8E8; }
+        .header h1 { font-family: 'Raleway', sans-serif; font-weight: 800; font-size: 2rem; color: #0A2A43; font-weight: 700; }
+        .status-pill { display: inline-block; background: #5BA897; color: white; font-size: 0.72rem; padding: 4px 14px; border-radius: 20px; margin-top: 8px; letter-spacing: 0.3px; }
 
-  <style>
-    :root {
-      --navy: #0A2A43;
-      --blue: #2C5F7C;
-      --teal: #5BA897;
-      --teal-dark: #4A8F80;
-      --cream: #FBF8F3;
-      --card: #FFFFFF;
-      --charcoal: #2A2A2A;
-      --gray: #E8E8E8;
-      --gray-soft: #F2F0EC;
-      --critical: #D94B4B;
-      --severe: #E07B4B;
-      --moderate: #F0B95C;
-      --mild: #F4D77A;
-      --normal: #7FC9A8;
-      --whatsapp: #25D366;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', -apple-system, system-ui, sans-serif;
-      background: var(--cream);
-      color: var(--charcoal);
-      line-height: 1.55;
-      font-size: 16px;
-    }
+        /* ── Layout ── */
+        .main { max-width: 520px; margin: 0 auto; padding: 20px 16px 32px; }
 
-    /* ── Top bar ───────────────────────────────── */
-    .topbar {
-      background: var(--card);
-      border-bottom: 1px solid var(--gray);
-      padding: 12px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .topbar .brand {
-      font-family: 'Lora', Georgia, serif;
-      font-weight: 600;
-      color: var(--navy);
-      font-size: 1.0625rem;
-      text-decoration: none;
-      flex-shrink: 0;
-    }
-    .topbar-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .news-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 14px;
-      background: var(--cream);
-      border: 1px solid var(--navy);
-      color: var(--navy);
-      border-radius: 8px;
-      font-size: 0.875rem;
-      font-weight: 500;
-      text-decoration: none;
-      transition: all 0.15s ease;
-    }
-    .news-btn:hover {
-      background: var(--navy);
-      color: white;
-    }
-    .news-btn svg { width: 14px; height: 14px; }
-    .lang-toggle {
-      display: flex;
-      gap: 4px;
-      font-size: 0.875rem;
-      background: var(--gray-soft);
-      border-radius: 8px;
-      padding: 3px;
-    }
-    .lang-toggle a {
-      padding: 5px 10px;
-      border-radius: 6px;
-      text-decoration: none;
-      color: var(--blue);
-      font-weight: 500;
-      transition: all 0.15s ease;
-    }
-    .lang-toggle a.active {
-      background: var(--navy);
-      color: white;
-    }
-    @media (max-width: 540px) {
-      .news-btn .news-label { display: none; }
-      .news-btn { padding: 8px 10px; }
-    }
+        /* ── Top grid ── */
+        .top-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; align-items: start; }
+        .photo-col { display: flex; flex-direction: column; gap: 10px; }
+        .photo-card { background: white; border-radius: 12px; overflow: hidden; border: 1px solid #E8E8E8; }
+        .photo-card img { width: 100%; height: 195px; object-fit: cover; display: block; }
+        .photo-placeholder { width: 100%; height: 195px; background: #E8E8E8; display: flex; align-items: center; justify-content: center; color: #888; font-size: 0.72rem; text-align: center; padding: 12px; line-height: 1.5; }
+        .visit-box { background: #2C5F7C; color: white; border-radius: 10px; padding: 11px 12px; font-size: 0.78rem; text-align: center; line-height: 1.5; }
+        .visit-box strong { font-size: 0.9rem; display: block; margin-top: 2px; }
 
-    /* ── Status pill ───────────────────────────── */
-    .status-bar {
-      background: var(--gray-soft);
-      padding: 10px 24px;
-      text-align: center;
-      font-size: 0.875rem;
-      color: var(--blue);
-      border-bottom: 1px solid var(--gray);
-    }
-    .status-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 500;
-    }
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--critical);
-      animation: pulse 2s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
+        /* ── Thermometer ── */
+        .thermo-card { background: white; border-radius: 12px; border: 1px solid #E8E8E8; padding: 14px 10px; display: flex; flex-direction: column; align-items: center; }
+        .thermo-title { font-size: 0.68rem; color: #777; text-align: center; margin-bottom: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.4px; }
+        .thermo-body { display: flex; gap: 8px; align-items: stretch; }
+        .thermo-labels { display: flex; flex-direction: column-reverse; justify-content: space-between; height: 170px; }
+        .thermo-labels span { font-size: 0.58rem; color: #555; line-height: 1.2; white-space: nowrap; }
+        .lbl-critica { color: #D94B4B !important; font-weight: 600; }
+        .lbl-normal  { color: #5BA897 !important; font-weight: 600; }
+        .thermo-marker-wrap { position: relative; width: 22px; height: 170px; }
+        .segs-absolute { position: absolute; inset: 0; display: flex; flex-direction: column-reverse; border-radius: 12px; overflow: hidden; }
+        .seg { width: 100%; }
+        .seg-critica  { background: #D94B4B; flex: 20; }
+        .seg-severa   { background: #C97B5C; flex: 30; }
+        .seg-moderada { background: #E8A84A; flex: 50; }
+        .seg-leve     { background: #A3C96A; flex: 50; }
+        .seg-normal   { background: #5BA897; flex: 300; }
+        .marker-line { position: absolute; left: -5px; width: 32px; height: 3px; background: white; border-radius: 2px; box-shadow: 0 0 4px rgba(0,0,0,0.35); transition: bottom 0.5s ease; }
+        .thermo-value { text-align: center; margin-top: 10px; }
+        .thermo-number { font-size: 1.5rem; font-weight: 700; color: #D94B4B; }
+        .thermo-badge { display: inline-block; color: white; font-size: 0.6rem; padding: 2px 8px; border-radius: 10px; margin-top: 3px; font-weight: 600; }
+        .thermo-sub { font-size: 0.6rem; color: #888; margin-top: 4px; line-height: 1.4; }
 
-    /* ── Hero ──────────────────────────────────── */
-    .hero {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 56px 24px 24px;
-      text-align: center;
-    }
-    h1.title {
-      font-family: 'Lora', Georgia, serif;
-      font-weight: 700;
-      color: var(--navy);
-      font-size: clamp(2.5rem, 6.5vw, 4.25rem);
-      letter-spacing: -0.025em;
-      line-height: 1.05;
-      margin-bottom: 20px;
-    }
-    .lede {
-      max-width: 640px;
-      margin: 0 auto;
-      color: var(--blue);
-      font-size: 1.0625rem;
-      line-height: 1.6;
-    }
+        /* ── Info grid ── */
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 18px; }
+        .info-box { background: white; border-radius: 10px; border: 1px solid #E8E8E8; padding: 12px; font-size: 0.78rem; line-height: 1.5; color: #2A2A2A; }
+        .info-box.teal { border-left: 3px solid #5BA897; }
+        .info-box.navy { border-left: 3px solid #0A2A43; }
+        .info-box .label { font-size: 0.62rem; color: #888; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 5px; }
 
-    /* ── Two-column visual section ─────────────── */
-    .visual {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 32px 24px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-    }
-    @media (max-width: 768px) {
-      .visual { grid-template-columns: 1fr; }
-    }
-    .col {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .card {
-      background: var(--card);
-      border-radius: 18px;
-      padding: 24px;
-      border: 1px solid var(--gray);
-      box-shadow: 0 1px 3px rgba(10, 42, 67, 0.04);
-    }
+        /* ── CTA Buttons ── */
+        .cta-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .btn { padding: 15px 10px; border-radius: 10px; border: none; font-family: 'Raleway', sans-serif; font-size: 0.82rem; font-weight: 600; cursor: pointer; line-height: 1.35; transition: opacity 0.15s, transform 0.1s; }
+        .btn:active { transform: scale(0.97); }
+        .btn-navy { background: #0A2A43; color: white; }
+        .btn-teal  { background: #5BA897; color: white; }
 
-    /* ── Photo card ────────────────────────────── */
-    .photo-card {
-      padding: 0;
-      overflow: hidden;
-      aspect-ratio: 4/3;
-      background: linear-gradient(135deg, #E8EEF2 0%, #D4DEE5 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--blue);
-      font-size: 0.9375rem;
-      text-align: center;
-      padding: 40px;
-      position: relative;
-    }
-    .photo-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .photo-placeholder {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      align-items: center;
-    }
-    .photo-placeholder svg {
-      width: 48px;
-      height: 48px;
-      opacity: 0.5;
-    }
+        /* ── Modal ── */
+        .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(10,42,67,0.55); z-index: 200; justify-content: center; align-items: flex-end; }
+        .modal-overlay.open { display: flex; }
+        .modal { background: white; border-radius: 20px 20px 0 0; padding: 22px 20px 36px; width: 100%; max-width: 520px; max-height: 92vh; overflow-y: auto; animation: slideUp 0.25s ease; }
+        @keyframes slideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+        .modal-header h2 { font-family: 'Raleway', sans-serif; font-weight: 800; color: #0A2A43; font-size: 1.15rem; }
+        .modal-close { background: #E8E8E8; border: none; border-radius: 50%; width: 30px; height: 30px; font-size: 1rem; cursor: pointer; line-height: 30px; text-align: center; flex-shrink: 0; }
+        .modal-sub { font-size: 0.82rem; color: #666; margin-bottom: 16px; line-height: 1.55; }
 
-    /* ── Treatment info card ───────────────────── */
-    .treatment-card {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 20px;
-      align-items: center;
-    }
-    .treatment-icon {
-      width: 80px;
-      height: 80px;
-      flex-shrink: 0;
-    }
-    .treatment-text h3 {
-      font-family: 'Lora', Georgia, serif;
-      font-size: 1.0625rem;
-      color: var(--navy);
-      margin-bottom: 6px;
-      font-weight: 600;
-    }
-    .treatment-text p {
-      font-size: 0.9375rem;
-      color: var(--charcoal);
-      line-height: 1.5;
-    }
-    .treatment-text strong { color: var(--navy); font-weight: 600; }
+        /* Bank */
+        .bank-row { background: #FBF8F3; border-radius: 8px; padding: 11px 14px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+        .bank-row-left .lbl { font-size: 0.65rem; color: #888; }
+        .bank-row-left .val { font-size: 0.92rem; font-weight: 600; color: #0A2A43; word-break: break-all; }
+        .copy-btn { background: #0A2A43; color: white; border: none; border-radius: 6px; padding: 5px 12px; font-size: 0.68rem; cursor: pointer; white-space: nowrap; flex-shrink: 0; transition: background 0.15s; }
+        .copy-btn.copied { background: #5BA897; }
+        .bank-note { font-size: 0.72rem; color: #666; background: #FBF8F3; border-radius: 8px; padding: 10px 12px; margin-top: 10px; line-height: 1.55; }
+        #copy-toast { display: none; text-align: center; color: #5BA897; font-size: 0.78rem; margin-top: 8px; font-weight: 500; }
 
-    /* ── Thermometer card ──────────────────────── */
-    .thermo-card {
-      padding: 28px 24px;
-    }
-    .thermo-title {
-      text-align: center;
-      font-family: 'Lora', Georgia, serif;
-      font-weight: 600;
-      color: var(--blue);
-      font-size: 1rem;
-      margin-bottom: 20px;
-    }
-    .thermo-wrap {
-      display: grid;
-      grid-template-columns: 1fr 60px;
-      gap: 20px;
-      align-items: stretch;
-    }
-    .thermo-scale {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      font-size: 0.8125rem;
-    }
-    .thermo-row {
-      padding: 12px 14px;
-      border-radius: 10px;
-      color: white;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .thermo-row .range {
-      font-weight: 400;
-      font-size: 0.75rem;
-      opacity: 0.9;
-    }
-    .row-normal { background: var(--normal); }
-    .row-mild   { background: var(--mild); color: var(--charcoal); }
-    .row-mod    { background: var(--moderate); color: var(--charcoal); }
-    .row-sev    { background: var(--severe); }
-    .row-crit   {
-      background: var(--critical);
-      box-shadow: 0 0 0 3px rgba(217, 75, 75, 0.2);
-      position: relative;
-    }
-    .row-crit::after {
-      content: "← Iker";
-      position: absolute;
-      right: -56px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--critical);
-      font-weight: 700;
-      font-size: 0.8125rem;
-      white-space: nowrap;
-    }
+        /* Form */
+        .form-group { margin-bottom: 13px; }
+        .form-group label { display: block; font-size: 0.78rem; font-weight: 600; color: #0A2A43; margin-bottom: 4px; }
+        .form-group input, .form-group select { width: 100%; padding: 10px 12px; border: 1.5px solid #E8E8E8; border-radius: 8px; font-family: 'Raleway', sans-serif; font-size: 0.88rem; color: #2A2A2A; background: white; transition: border-color 0.15s; }
+        .form-group input:focus, .form-group select:focus { outline: none; border-color: #5BA897; }
+        .submit-btn { width: 100%; padding: 14px; background: #5BA897; color: white; border: none; border-radius: 10px; font-family: 'Raleway', sans-serif; font-size: 0.95rem; font-weight: 600; cursor: pointer; margin-top: 6px; transition: opacity 0.15s; }
+        .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+        .success-msg { display: none; background: #e8f6f3; border: 1.5px solid #5BA897; border-radius: 10px; padding: 18px; text-align: center; color: #2C5F7C; font-size: 0.88rem; line-height: 1.6; margin-top: 10px; }
+        .success-msg strong { display: block; font-size: 1rem; color: #0A2A43; margin-bottom: 6px; }
 
-    .thermo-tube {
-      background: var(--gray-soft);
-      border-radius: 30px;
-      position: relative;
-      overflow: hidden;
-      border: 1px solid var(--gray);
-    }
-    .thermo-fill {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(to top, var(--critical) 0%, var(--severe) 25%, var(--moderate) 50%, var(--mild) 75%, var(--normal) 100%);
-      border-radius: 0 0 30px 30px;
-    }
-    .thermo-bulb {
-      position: absolute;
-      bottom: -8px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 56px;
-      height: 56px;
-      background: var(--critical);
-      border-radius: 50%;
-      box-shadow: 0 4px 12px rgba(217, 75, 75, 0.35);
-    }
+        /* Disclaimer */
+        .disclaimer { font-size: 0.68rem; color: #aaa; text-align: center; margin-top: 20px; line-height: 1.6; }
 
-    /* ── Alert info card ───────────────────────── */
-    .alert-card {
-      background: white;
-      border: 1px solid var(--gray);
-      border-radius: 14px;
-      padding: 18px 20px;
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-    }
-    .alert-number {
-      flex-shrink: 0;
-      background: var(--critical);
-      color: white;
-      padding: 12px 14px;
-      border-radius: 10px;
-      text-align: center;
-      min-width: 88px;
-    }
-    .alert-number .num {
-      font-family: 'Lora', Georgia, serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      line-height: 1;
-      display: block;
-    }
-    .alert-number .label {
-      font-size: 0.6875rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      margin-top: 4px;
-    }
-    .alert-text { font-size: 0.875rem; color: var(--charcoal); line-height: 1.55; }
-    .alert-text strong { color: var(--navy); font-weight: 600; display: block; margin-bottom: 4px; font-size: 0.9375rem; }
+        /* ── Admin trigger (pie de página, discreta) ── */
+        .admin-trigger { display: block; text-align: center; margin-top: 28px; color: #aaa; font-size: 0.72rem; cursor: pointer; user-select: none; letter-spacing: 1px; font-family: 'Raleway', sans-serif; }
+        .admin-trigger:hover { color: #777; }
 
-    /* ── CTA section ───────────────────────────── */
-    .cta-section {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 8px 24px 56px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-    @media (max-width: 768px) {
-      .cta-section { grid-template-columns: 1fr; }
-    }
-    .cta {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 22px 24px;
-      border-radius: 14px;
-      text-decoration: none;
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      font-size: 1.0625rem;
-      text-align: center;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 12px rgba(10, 42, 67, 0.1);
-      line-height: 1.3;
-      cursor: pointer;
-    }
-    .cta svg { width: 22px; height: 22px; flex-shrink: 0; }
-    .cta-primary {
-      background: var(--blue);
-      color: white;
-    }
-    .cta-primary:hover {
-      background: var(--navy);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(10, 42, 67, 0.18);
-    }
-    .cta-secondary {
-      background: var(--teal);
-      color: white;
-    }
-    .cta-secondary:hover {
-      background: var(--teal-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(91, 168, 151, 0.3);
-    }
+        /* ── Admin modal ── */
+        #modal-admin .modal { border-radius: 20px 20px 0 0; }
+        #modal-admin h2 { font-family: 'Raleway', sans-serif; font-weight: 800; color: #0A2A43; font-size: 1.1rem; }
+        .admin-field { margin-bottom: 14px; }
+        .admin-field label { display: block; font-size: 0.75rem; font-weight: 600; color: #0A2A43; margin-bottom: 4px; }
+        .admin-field input { width: 100%; padding: 10px 12px; border: 1.5px solid #E8E8E8; border-radius: 8px; font-size: 0.9rem; font-family: 'Raleway', sans-serif; }
+        .admin-field input:focus { outline: none; border-color: #5BA897; }
+        .admin-save { width: 100%; padding: 13px; background: #0A2A43; color: white; border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 600; cursor: pointer; font-family: 'Raleway', sans-serif; margin-top: 4px; }
+        .admin-saved { display: none; text-align: center; color: #5BA897; font-size: 0.82rem; margin-top: 10px; font-weight: 600; }
+        .admin-note { font-size: 0.68rem; color: #aaa; text-align: center; margin-top: 10px; line-height: 1.5; }
 
-    /* ── How it works ──────────────────────────── */
-    .how {
-      background: white;
-      border-top: 1px solid var(--gray);
-      padding: 56px 24px;
-    }
-    .how-inner { max-width: 1000px; margin: 0 auto; }
-    .how h2 {
-      font-family: 'Lora', Georgia, serif;
-      color: var(--navy);
-      font-size: 1.875rem;
-      margin-bottom: 8px;
-      text-align: center;
-    }
-    .how-sub { text-align: center; color: var(--blue); margin-bottom: 40px; font-size: 0.9375rem; }
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-    @media (max-width: 768px) {
-      .steps { grid-template-columns: 1fr; }
-    }
-    .step {
-      text-align: center;
-      padding: 20px;
-    }
-    .step-num {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: var(--cream);
-      color: var(--navy);
-      font-family: 'Lora', Georgia, serif;
-      font-weight: 700;
-      font-size: 1.25rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 14px;
-      border: 2px solid var(--navy);
-    }
-    .step h3 {
-      font-family: 'Lora', Georgia, serif;
-      color: var(--navy);
-      font-size: 1.125rem;
-      margin-bottom: 8px;
-      font-weight: 600;
-    }
-    .step p { color: var(--charcoal); font-size: 0.9375rem; }
+        /* ── Password prompt ── */
+        #pass-wrap { text-align: center; }
+        #pass-wrap p { font-size: 0.85rem; color: #555; margin-bottom: 12px; }
+        #pass-input { width: 100%; padding: 11px 14px; border: 1.5px solid #E8E8E8; border-radius: 8px; font-size: 1rem; text-align: center; letter-spacing: 4px; font-family: 'Raleway', sans-serif; }
+        #pass-input:focus { outline: none; border-color: #0A2A43; }
+        #pass-btn { width: 100%; margin-top: 10px; padding: 12px; background: #0A2A43; color: white; border: none; border-radius: 10px; font-size: 0.9rem; font-weight: 600; cursor: pointer; font-family: 'Raleway', sans-serif; }
+        #pass-error { color: #D94B4B; font-size: 0.78rem; margin-top: 8px; display: none; }
 
-    /* ── Trust strip ───────────────────────────── */
-    .trust {
-      background: var(--gray-soft);
-      padding: 40px 24px;
-      text-align: center;
-    }
-    .trust-inner { max-width: 880px; margin: 0 auto; }
-    .trust h2 {
-      font-family: 'Lora', Georgia, serif;
-      color: var(--navy);
-      font-size: 1.5rem;
-      margin-bottom: 24px;
-    }
-    .trust-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-    @media (max-width: 600px) {
-      .trust-grid { grid-template-columns: 1fr; }
-    }
-    .trust-item {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      border: 1px solid var(--gray);
-    }
-    .trust-num {
-      font-family: 'Lora', Georgia, serif;
-      font-size: 2rem;
-      color: var(--navy);
-      font-weight: 700;
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-    .trust-label { font-size: 0.8125rem; color: var(--blue); }
-    .trust-link {
-      display: inline-block;
-      margin-top: 24px;
-      color: var(--navy);
-      font-weight: 500;
-      text-decoration: none;
-      border-bottom: 1px solid var(--navy);
-    }
-
-    /* ── Floating WhatsApp button ──────────────── */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: var(--whatsapp);
-      color: white;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-      z-index: 60;
-      transition: transform 0.2s ease;
-      text-decoration: none;
-    }
-    .whatsapp-float:hover { transform: scale(1.08); }
-    .whatsapp-float svg { width: 30px; height: 30px; }
-
-    /* ── Footer ────────────────────────────────── */
-    footer {
-      background: var(--navy);
-      color: white;
-      padding: 40px 24px;
-      text-align: center;
-      font-size: 0.875rem;
-      line-height: 1.6;
-    }
-    footer a { color: var(--teal); text-decoration: none; }
-    .disclaimer { opacity: 0.75; margin-top: 12px; font-size: 0.8125rem; }
-  </style>
+        @media (max-width: 380px) {
+            .top-grid  { grid-template-columns: 1fr; }
+            .info-grid { grid-template-columns: 1fr; }
+            .cta-row   { grid-template-columns: 1fr; }
+            .header h1 { font-size: 1.6rem; }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Top bar -->
-  <header class="topbar">
-    <a href="./" class="brand">Unidos por Iker</a>
-    <div class="topbar-actions">
-      <a href="#" id="news-link" class="news-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
-          <path d="M18 14h-8M15 18h-5M10 6h8v4h-8z"/>
-        </svg>
-        <span class="news-label">Ver últimas noticias</span>
-      </a>
-      <nav class="lang-toggle" aria-label="Idioma">
-        <a href="./" class="active" aria-current="page">ES</a>
-        <a href="./en/">EN</a>
-      </nav>
+<!-- ═══ HEADER ═══ -->
+<div class="header">
+    <h1>Unidos por Iker</h1>
+    <div class="status-pill" id="status-pill">Estable · Última actualización: 9 de mayo 2026</div>
+</div>
+
+<!-- ═══ MAIN ═══ -->
+<div class="main">
+
+    <!-- Photo + Thermometer -->
+    <div class="top-grid">
+        <div class="photo-col">
+            <div class="photo-card">
+                <!-- Sube iker.jpg al mismo folder y descomenta esta línea: -->
+                <!-- <img src="iker.jpg" alt="Iker Orozco Hernández"> -->
+                <div class="photo-placeholder">📷 Sube <strong>iker.jpg</strong><br>al mismo folder</div>
+            </div>
+            <div class="visit-box">
+                <strong>Iker tiene su celular</strong> y le anima recibir visitas
+                <strong>8am – 9pm</strong>
+            </div>
+        </div>
+
+        <div class="thermo-card">
+            <div class="thermo-title">Niveles de Plaquetas</div>
+            <div class="thermo-body">
+                <div class="thermo-labels">
+                    <span class="lbl-critica">Crítica<br>&lt;20K</span>
+                    <span>Severa<br>20–50K</span>
+                    <span>Moderada<br>50–100K</span>
+                    <span>Leve<br>100–150K</span>
+                    <span class="lbl-normal">Normal<br>150–450K</span>
+                </div>
+                <div class="thermo-marker-wrap">
+                    <div class="segs-absolute">
+                        <div class="seg seg-critica"></div>
+                        <div class="seg seg-severa"></div>
+                        <div class="seg seg-moderada"></div>
+                        <div class="seg seg-leve"></div>
+                        <div class="seg seg-normal"></div>
+                    </div>
+                    <div class="marker-line" id="marker"></div>
+                </div>
+            </div>
+            <div class="thermo-value">
+                <div class="thermo-number" id="disp-actual">10,000</div>
+                <div class="thermo-badge" id="disp-badge" style="background:#D94B4B;">⚠ Alerta Crítica</div>
+                <div class="thermo-sub" id="disp-sub">
+                    Ingresó con 2,000 · Tras transfusión: 10,000<br>
+                    Riesgo de hemorragia por debajo de 20,000
+                </div>
+            </div>
+        </div>
     </div>
-  </header>
 
-  <!-- Status pill -->
-  <div class="status-bar">
-    <span class="status-pill">
-      <span class="status-dot" aria-hidden="true"></span>
-      Alerta crítica activa &middot; Última actualización 9 de mayo de 2026
-    </span>
-  </div>
+    <!-- Info boxes -->
+    <div class="info-grid">
+        <div class="info-box teal">
+            <span class="label">Tratamientos de Emergencia</span>
+            <div style="font-size:0.75rem; line-height:1.6;">
+                <div style="margin-bottom:5px;">
+                    💉 <strong>Transfusión de plaquetas</strong><br>
+                    <span style="color:#555;">Plaquetas nuevas para subir niveles rápido y frenar sangrados.</span>
+                    <span style="color:#C97B5C; font-weight:600;"> $$$</span>
+                </div>
+                <div style="margin-bottom:5px;">
+                    🧪 <strong>Inmunoglobulina (IGIV)</strong><br>
+                    <span style="color:#555;">Suero que actúa en 1–2 días para evitar que el cuerpo destruya sus propias plaquetas. ~$1,000,000 MXN.</span>
+                    <span style="color:#D94B4B; font-weight:600;"> $$$$</span>
+                </div>
+                <div>
+                    💊 <strong>Corticosteroides</strong><br>
+                    <span style="color:#555;">Medicamentos que calman las defensas para que dejen de atacar las plaquetas.</span>
+                    <span style="color:#5BA897; font-weight:600;"> $$</span>
+                </div>
+            </div>
+        </div>
 
-  <!-- Hero -->
-  <section class="hero">
-    <h1 class="title">Unidos por Iker</h1>
-    <p class="lede">
-      Plataforma respetuosa y transparente para coordinar apoyo médico.
-      Las intenciones se registran ahora y se activan únicamente cuando aparece
-      una necesidad médica real.
+        <div class="info-box navy">
+            <span class="label">Un mensaje para ti</span>
+            <span style="font-size:0.76rem; line-height:1.65; color:#2A2A2A;">
+                Todo sucedió de forma muy súbita: hace unos días aparecieron moretones sin causa aparente. Tras análisis de urgencia, los médicos ordenaron hospitalización inmediata el jueves pasado — Iker ingresó con solo <strong>2,000 plaquetas</strong>.<br><br>
+                Queremos que su único enfoque hoy sea descansar y recuperarse. Este espacio es una red de amor en acción, para que Iker esté tranquilo mientras Dios y la medicina hacen su trabajo.
+            </span>
+        </div>
+    </div>
+
+    <!-- Gracias -->
+    <p style="text-align:center; font-size:0.82rem; color:#2C5F7C; font-weight:600; margin-bottom:14px; font-family:'Raleway',sans-serif;">
+        Gracias por sus oraciones y por ser parte de este apoyo.
     </p>
-  </section>
 
-  <!-- Two-column visual section -->
-  <section class="visual">
-
-    <!-- Left column: photo + treatment info -->
-    <div class="col">
-      <div class="card photo-card" role="img" aria-label="Espacio reservado para foto de Iker (con consentimiento de la familia)">
-        <!-- Reemplazar este placeholder con: <img src="./assets/img/iker.jpg" alt="Iker en el hospital"> -->
-        <div class="photo-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <rect x="3" y="5" width="18" height="14" rx="2"/>
-            <circle cx="8" cy="10" r="2"/>
-            <path d="M3 17l5-5 4 4 3-3 6 6"/>
-          </svg>
-          <span>Foto de Iker<br><small style="opacity:0.7">(agregar con consentimiento familiar)</small></span>
-        </div>
-      </div>
-
-      <div class="card treatment-card">
-        <svg class="treatment-icon" viewBox="0 0 80 80" fill="none">
-          <rect x="14" y="20" width="34" height="44" rx="4" fill="#E8F1F4" stroke="#2C5F7C" stroke-width="1.5"/>
-          <rect x="20" y="26" width="22" height="6" rx="1" fill="#5BA897"/>
-          <rect x="20" y="36" width="22" height="3" rx="1" fill="#2C5F7C" opacity="0.4"/>
-          <rect x="20" y="42" width="16" height="3" rx="1" fill="#2C5F7C" opacity="0.4"/>
-          <circle cx="55" cy="54" r="10" fill="#2C5F7C"/>
-          <path d="M52 54l2.5 2.5L60 51" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <rect x="14" y="64" width="34" height="4" rx="1" fill="#2C5F7C" opacity="0.3"/>
-        </svg>
-        <div class="treatment-text">
-          <h3>Tratamiento en evaluación</h3>
-          <p>
-            Se evalúa aplicar <strong>inmunoglobulina humana</strong>, un tratamiento
-            de alta calidad <strong>pero muy costoso</strong>, con un valor cercano
-            al <strong>millón de pesos</strong>. Un refuerzo de "élite" para su sistema inmune.
-          </p>
-        </div>
-      </div>
+    <!-- CTA Buttons -->
+    <div class="cta-row">
+        <button class="btn btn-navy" onclick="openModal('financial')">
+            💳 Quiero ayudar financieramente
+        </button>
+        <button class="btn btn-teal" onclick="openModal('platelet')">
+            🩸 Quiero donar plaquetas
+        </button>
     </div>
 
-    <!-- Right column: thermometer + alert info -->
-    <div class="col">
-      <div class="card thermo-card">
-        <div class="thermo-title">Niveles de plaquetas</div>
-        <div class="thermo-wrap">
-          <div class="thermo-scale">
-            <div class="thermo-row row-normal">
-              <span>Rango normal</span>
-              <span class="range">150 000 – 450 000</span>
-            </div>
-            <div class="thermo-row row-mild">
-              <span>Trombocitopenia leve</span>
-              <span class="range">100 000 – 150 000</span>
-            </div>
-            <div class="thermo-row row-mod">
-              <span>Moderada</span>
-              <span class="range">50 000 – 100 000</span>
-            </div>
-            <div class="thermo-row row-sev">
-              <span>Severa</span>
-              <span class="range">20 000 – 50 000</span>
-            </div>
-            <div class="thermo-row row-crit">
-              <span>Alerta crítica</span>
-              <span class="range">&lt; 20 000</span>
-            </div>
-          </div>
-          <div class="thermo-tube" aria-hidden="true">
-            <div class="thermo-fill" style="height: 6%;"></div>
-            <div class="thermo-bulb"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="alert-card">
-        <div class="alert-number">
-          <span class="num">10,000</span>
-          <span class="label">Actualmente</span>
-        </div>
-        <div class="alert-text">
-          <strong>Riesgo de hemorragia</strong>
-          Iker ingresó con 3,000 plaquetas y hoy se encuentra en 10,000.
-          Aunque ha mejorado, sigue muy por debajo del nivel de seguridad
-          (cualquier valor por debajo de 20,000 se considera crítico).
-        </div>
-      </div>
-    </div>
-
-  </section>
-
-  <!-- CTAs (open WhatsApp directly) -->
-  <section class="cta-section" aria-label="Formas de apoyar">
-    <a href="#" id="cta-financial" class="cta cta-primary" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.815 9.815 0 0 0 12.04 2zm0 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23a8.221 8.221 0 0 1-4.21-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.264 8.264 0 0 1-1.26-4.38c.01-4.54 3.7-8.24 8.27-8.24z"/>
-      </svg>
-      Quiero expresar mi intención de apoyo financiero
-    </a>
-    <a href="#" id="cta-platelets" class="cta cta-secondary" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.815 9.815 0 0 0 12.04 2zm0 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23a8.221 8.221 0 0 1-4.21-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.264 8.264 0 0 1-1.26-4.38c.01-4.54 3.7-8.24 8.27-8.24z"/>
-      </svg>
-      Quiero ofrecer donación de plaquetas
-    </a>
-  </section>
-
-  <!-- How it works -->
-  <section class="how" id="como-funciona">
-    <div class="how-inner">
-      <h2>Cómo funciona</h2>
-      <p class="how-sub">Esto no es una colecta. Es un sistema de coordinación.</p>
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <h3>Registras tu intención</h3>
-          <p>Nos dices si y cómo te gustaría apoyar. No se solicita dinero en este momento.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <h3>Te contactamos cuando es necesario</h3>
-          <p>Solo cuando aparece un gasto médico real que coincida con tu intención.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <h3>Apoyas directamente</h3>
-          <p>Pagas al hospital, farmacia o proveedor directo. Recibo en mano y registrado.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Trust strip -->
-  <section class="trust">
-    <div class="trust-inner">
-      <h2>Transparencia en tiempo real</h2>
-      <div class="trust-grid">
-        <div class="trust-item">
-          <div class="trust-num">0</div>
-          <div class="trust-label">Intenciones registradas</div>
-        </div>
-        <div class="trust-item">
-          <div class="trust-num">$0</div>
-          <div class="trust-label">Apoyos aplicados (CAD equiv.)</div>
-        </div>
-        <div class="trust-item">
-          <div class="trust-num">1</div>
-          <div class="trust-label">Necesidad médica abierta</div>
-        </div>
-      </div>
-      <a href="./transparencia.html" class="trust-link">Ver el panel completo →</a>
-    </div>
-  </section>
-
-  <!-- Floating WhatsApp -->
-  <a href="#" id="float-wa" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Abrir chat de WhatsApp con la familia">
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.815 9.815 0 0 0 12.04 2zm0 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23a8.221 8.221 0 0 1-4.21-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.264 8.264 0 0 1-1.26-4.38c.01-4.54 3.7-8.24 8.27-8.24zm-4.52 4.6c-.22 0-.58.08-.88.41-.31.32-1.16 1.13-1.16 2.76s1.19 3.21 1.36 3.43c.16.21 2.3 3.68 5.69 5.01 2.83 1.11 3.4.89 4.02.83.62-.05 1.99-.81 2.27-1.6.28-.79.28-1.46.2-1.6-.09-.14-.32-.22-.66-.39-.34-.18-1.99-.98-2.3-1.09-.31-.11-.54-.17-.76.17-.22.34-.86 1.09-1.06 1.31-.19.21-.39.24-.73.07-.34-.18-1.42-.52-2.71-1.67-1-.89-1.67-1.99-1.86-2.32-.19-.34-.02-.52.15-.69.16-.16.36-.41.54-.62.18-.21.24-.36.36-.6.12-.24.06-.45-.02-.62-.08-.18-.74-1.79-1.04-2.45-.27-.65-.55-.56-.74-.57-.19-.01-.41-.02-.63-.02z"/>
-    </svg>
-  </a>
-
-  <!-- Footer -->
-  <footer>
-    <p><strong>Unidos por Iker</strong> · Iker Orozco Hernández</p>
     <p class="disclaimer">
-      No es una organización benéfica registrada. No se emiten recibos deducibles de impuestos.
-      No sustituye asesoría médica. Todo apoyo es voluntario y condicional a una necesidad médica real.
+        El apoyo es voluntario y está activo por una necesidad médica real.<br>
+        No somos organización de caridad · No podemos emitir recibos fiscales.
     </p>
-    <p class="disclaimer">
-      <a href="./en/">English version</a> · <a href="./privacidad.html">Privacidad</a> · <a href="./transparencia.html">Transparencia</a>
-    </p>
-  </footer>
 
-  <script>
-    // Build WhatsApp links from config
-    (function() {
-      var phone = window.IKER_CONFIG.whatsapp;
-      var base = "https://wa.me/" + phone + "?text=";
+    <!-- Admin trigger discreto -->
+    <span class="admin-trigger" onclick="openAdmin()">⚙ actualizar info</span>
+</div>
 
-      var msgFinancial = encodeURIComponent(
-        "Hola, vi la página de Unidos por Iker y quiero expresar mi intención de apoyo financiero. ¿Me pueden compartir más detalles cuando aparezca una necesidad médica concreta? Gracias."
-      );
-      var msgPlatelets = encodeURIComponent(
-        "Hola, vi la página de Unidos por Iker y quiero ofrecer donación de plaquetas. ¿Me pueden compartir la dirección del banco de sangre, horarios y los datos del paciente? Gracias."
-      );
-      var msgGeneral = encodeURIComponent(
-        "Hola, vi la página de Unidos por Iker y quisiera comunicarme con la familia."
-      );
 
-      document.getElementById("cta-financial").href = base + msgFinancial;
-      document.getElementById("cta-platelets").href = base + msgPlatelets;
-      document.getElementById("float-wa").href = base + msgGeneral;
-      document.getElementById("news-link").href = window.IKER_CONFIG.latestNews;
-    })();
-  </script>
+<!-- ═══ MODAL: FINANCIERO ═══ -->
+<div class="modal-overlay" id="modal-financial">
+    <div class="modal">
+        <div class="modal-header">
+            <h2>💳 Apoyo financiero</h2>
+            <button class="modal-close" onclick="closeModal('financial')">✕</button>
+        </div>
+        <p class="modal-sub">Transferencia directa a la cuenta de la mamá de Iker. Cada peso recibido se documenta y se reporta.</p>
+        <div class="bank-row">
+            <div class="bank-row-left"><div class="lbl">Banco</div><div class="val">Santander</div></div>
+        </div>
+        <div class="bank-row">
+            <div class="bank-row-left"><div class="lbl">Titular</div><div class="val">Nohemi Isabel Hernández Flores</div></div>
+            <button class="copy-btn" onclick="copyText('Nohemi Isabel Hernández Flores', this)">Copiar</button>
+        </div>
+        <div class="bank-row">
+            <div class="bank-row-left"><div class="lbl">CLABE Interbancaria</div><div class="val">014180566200743203</div></div>
+            <button class="copy-btn" onclick="copyText('014180566200743203', this)">Copiar</button>
+        </div>
+        <div class="bank-row">
+            <div class="bank-row-left"><div class="lbl">Número de cuenta</div><div class="val">56620074320</div></div>
+            <button class="copy-btn" onclick="copyText('56620074320', this)">Copiar</button>
+        </div>
+        <div class="bank-note">Puedes enviar tu comprobante por WhatsApp a la familia para llevar registro y agradecerte personalmente.</div>
+        <div id="copy-toast">✓ Copiado al portapapeles</div>
+
+        <div style="margin-top:16px; border-top:1px solid #E8E8E8; padding-top:16px;">
+            <div style="font-size:0.65rem; color:#888; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px;">Donación internacional</div>
+            <p style="font-size:0.8rem; color:#555; margin-bottom:12px; line-height:1.55;">
+                Si estás fuera de México y prefieres donar en dólares o con tarjeta internacional, puedes hacerlo a través de GoFundMe.
+            </p>
+            <button onclick="window.open('https://gofund.me/ff7bc931a','_blank')" style="display:block; width:100%; text-align:center; background:#5BA897; color:white; padding:13px; border-radius:10px; font-size:0.9rem; font-weight:700; border:none; cursor:pointer; font-family:'Raleway',sans-serif;">
+                🌎 Donaciones internacionales
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<!-- ═══ MODAL: PLAQUETAS ═══ -->
+<div class="modal-overlay" id="modal-platelet">
+    <div class="modal">
+        <div class="modal-header">
+            <h2>🩸 Donar plaquetas</h2>
+            <button class="modal-close" onclick="closeModal('platelet')">✕</button>
+        </div>
+        <p class="modal-sub">Registra tu intención. La familia te contactará con los requisitos del banco de sangre, compatibilidad y fecha disponible.</p>
+        <!-- Info de donación -->
+        <div id="donor-info" style="background:#f0f8f6; border:1.5px solid #5BA897; border-radius:12px; padding:14px 16px; margin-bottom:16px; font-size:0.78rem; line-height:1.65; color:#2A2A2A;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                <strong style="font-size:0.85rem; color:#0A2A43;">Donación de Plaquetas para Iker Orozco Hernández</strong>
+                <button onclick="copyDonorInfo(this)" style="background:#0A2A43; color:white; border:none; border-radius:6px; padding:5px 12px; font-size:0.68rem; cursor:pointer; font-family:'Raleway',sans-serif; white-space:nowrap; flex-shrink:0;">Copiar</button>
+            </div>
+
+            <div style="margin-bottom:8px;">
+                <span style="font-size:0.65rem; color:#5BA897; font-weight:700; text-transform:uppercase; letter-spacing:0.5px;">Datos del Paciente y Ubicación</span><br>
+                🏥 <strong>Paciente:</strong> Iker Orozco Hernández<br>
+                🏨 <strong>Hospital:</strong> Star Médica Tlalnepantla (Nivel 1, Banco de Sangre)<br>
+                📍 <strong>Dirección:</strong> Sor Juana Inés de la Cruz No. 280, Tlalnepantla de Baz<br>
+                📞 <strong>Citas:</strong> 555321-7070 ext. 1134<br>
+                🕐 <strong>Horario:</strong> Lunes a Domingo, 08:00 – 17:00 hrs
+            </div>
+
+            <div style="margin-bottom:8px;">
+                <span style="font-size:0.65rem; color:#5BA897; font-weight:700; text-transform:uppercase; letter-spacing:0.5px;">Requisitos Principales</span><br>
+                • Identificación oficial vigente (INE o Pasaporte)<br>
+                • Edad entre 18–65 años y peso mayor a 50 kg<br>
+                • No haber tomado aspirinas, ibuprofeno o desinflamatorios en los últimos 3 días<br>
+                • Ayuno mínimo 4 hrs (se permite fruta o café negro; evitar lácteos, huevo y grasas)<br>
+                • No haber ingerido alcohol en las últimas 48 hrs<br>
+                • Estar sano (sin gripe, tos ni fiebre). Si tuviste hepatitis antes de los 10 años, sí puedes donar<br>
+                • Mínimo 1 año desde el último tatuaje, perforación o cirugía<br>
+                • No haber recibido vacunas en los últimos 30 días
+            </div>
+
+            <div style="background:white; border-radius:8px; padding:8px 10px; font-size:0.74rem; color:#2C5F7C;">
+                ℹ️ El proceso dura aproximadamente <strong>90 minutos</strong> y es muy seguro. Donadores recurrentes pueden volver cada <strong>2 semanas</strong>.<br><br>
+                Muchas gracias por su apoyo, disponibilidad y oraciones.
+            </div>
+        </div>
+
+        <a href="https://forms.gle/4pWnQot44o1CwvTW7" target="_blank" class="submit-btn" style="display:block; text-align:center; text-decoration:none; margin-top:4px;">
+            Enviar mis datos
+        </a>
+        <p style="margin-top:14px; font-size:0.78rem; color:#2A2A2A; text-align:center; font-weight:600;">Nos pondremos en contacto contigo en cuanto se necesiten donadores.</p>
+    </div>
+</div>
+
+
+<!-- ═══ MODAL: ADMIN ═══ -->
+<div class="modal-overlay" id="modal-admin">
+    <div class="modal">
+        <div class="modal-header">
+            <h2>⚙ Actualizar página</h2>
+            <button class="modal-close" onclick="closeModal('admin')">✕</button>
+        </div>
+
+        <!-- Password screen -->
+        <div id="pass-wrap">
+            <p>Ingresa la contraseña para editar</p>
+            <input type="password" id="pass-input" placeholder="••••••••" onkeydown="if(event.key==='Enter') checkPass()">
+            <button id="pass-btn" onclick="checkPass()">Entrar</button>
+            <div id="pass-error">Contraseña incorrecta</div>
+        </div>
+
+        <!-- Admin form (hidden until correct password) -->
+        <div id="admin-form" style="display:none;">
+            <div class="admin-field">
+                <label>Plaquetas actuales</label>
+                <input type="number" id="a-actual" placeholder="ej. 10000">
+            </div>
+            <div class="admin-field">
+                <label>Nivel al ingreso (primera vez que se registró)</label>
+                <input type="number" id="a-ingreso" placeholder="ej. 2000">
+            </div>
+            <div class="admin-field">
+                <label>Estado (lo que aparece en la píldora verde del header)</label>
+                <input type="text" id="a-estado" placeholder="ej. Estable">
+            </div>
+            <div class="admin-field">
+                <label>Fecha de última actualización</label>
+                <input type="text" id="a-fecha" placeholder="ej. 10 de mayo 2026">
+            </div>
+            <div class="admin-field">
+                <label>Nota adicional (opcional — aparece bajo el termómetro)</label>
+                <input type="text" id="a-nota" placeholder="ej. Siguiente análisis mañana por la mañana">
+            </div>
+            <button class="admin-save" onclick="saveAdmin()">Guardar y actualizar</button>
+            <div class="admin-saved" id="admin-saved">✓ Página actualizada</div>
+            <p class="admin-note">
+                Los cambios se guardan en este dispositivo.<br>
+                Para que todos los vean, sube el HTML actualizado a GitHub.
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // ── CONFIG ──────────────────────────────────────────────
+    const APPS_SCRIPT_URL = 'PEGA_TU_URL_AQUI';
+
+    // Contraseña del admin — cámbiala aquí si quieres
+    const ADMIN_PASS = 'iker2026';
+
+    // Valores por default (lo que aparece si nadie ha editado aún)
+    const DEFAULTS = {
+        actual:  10000,
+        ingreso: 2000,
+        estado:  'Estable',
+        fecha:   '9 de mayo 2026',
+        nota:    ''
+    };
+    // ────────────────────────────────────────────────────────
+
+    // Carga datos (localStorage o defaults)
+    function loadData() {
+        const saved = localStorage.getItem('iker_data');
+        return saved ? JSON.parse(saved) : { ...DEFAULTS };
+    }
+
+    // Calcula posición del marcador (0–170px desde abajo)
+    function markerBottom(val) {
+        const MAX = 450000;
+        const BAR = 170;
+        return Math.min((val / MAX) * BAR, BAR - 2);
+    }
+
+    // Color e ícono según nivel
+    function badgeStyle(val) {
+        if (val < 20000)  return { bg: '#D94B4B', text: '⚠ Alerta Crítica' };
+        if (val < 50000)  return { bg: '#C97B5C', text: '⚠ Severa' };
+        if (val < 100000) return { bg: '#E8A84A', text: 'Moderada' };
+        if (val < 150000) return { bg: '#A3C96A', text: 'Leve' };
+        return { bg: '#5BA897', text: '✓ Normal' };
+    }
+
+    // Renderiza la página con los datos guardados
+    function renderPage(data) {
+        const val = Number(data.actual);
+
+        // Número principal
+        document.getElementById('disp-actual').textContent = val.toLocaleString('es-MX');
+
+        // Badge
+        const bs = badgeStyle(val);
+        const badge = document.getElementById('disp-badge');
+        badge.style.background = bs.bg;
+        badge.textContent = bs.text;
+
+        // Sub-texto
+        const nota = data.nota ? `<br>${data.nota}` : '';
+        document.getElementById('disp-sub').innerHTML =
+            `Ingresó con ${Number(data.ingreso).toLocaleString('es-MX')} · Ahora: ${val.toLocaleString('es-MX')}<br>` +
+            `Riesgo de hemorragia por debajo de 20,000${nota}`;
+
+        // Marcador del termómetro
+        document.getElementById('marker').style.bottom = markerBottom(val) + 'px';
+
+        // Píldora del header
+        document.getElementById('status-pill').textContent =
+            `${data.estado} · Última actualización: ${data.fecha}`;
+    }
+
+    // Carga y renderiza al inicio
+    renderPage(loadData());
+
+    // Fecha mínima del calendario = hoy
+    const hoy = new Date().toISOString().split('T')[0];
+    document.getElementById('fecha_prueba').setAttribute('min', hoy);
+
+
+    // ── Modals ──────────────────────────────────────────────
+    function openModal(type) {
+        document.getElementById('modal-' + type).classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeModal(type) {
+        document.getElementById('modal-' + type).classList.remove('open');
+        document.body.style.overflow = '';
+        // Reset admin screen on close
+        if (type === 'admin') {
+            document.getElementById('pass-wrap').style.display = 'block';
+            document.getElementById('admin-form').style.display = 'none';
+            document.getElementById('pass-input').value = '';
+            document.getElementById('pass-error').style.display = 'none';
+        }
+    }
+    document.querySelectorAll('.modal-overlay').forEach(o => {
+        o.addEventListener('click', function(e) {
+            if (e.target === this) {
+                const id = this.id.replace('modal-', '');
+                closeModal(id);
+            }
+        });
+    });
+
+    // ── Copy ────────────────────────────────────────────────
+    function copyText(text, btn) {
+        navigator.clipboard.writeText(text).then(() => {
+            const orig = btn.textContent;
+            btn.textContent = '✓ Copiado';
+            btn.classList.add('copied');
+            const t = document.getElementById('copy-toast');
+            if (t) t.style.display = 'block';
+            setTimeout(() => {
+                btn.textContent = orig;
+                btn.classList.remove('copied');
+                if (t) t.style.display = 'none';
+            }, 2200);
+        });
+    }
+
+    // ── Platelet form ────────────────────────────────────────
+    function submitPlatelet(e) {
+        e.preventDefault();
+        const form = document.getElementById('platelet-form');
+        const btn  = document.getElementById('platelet-submit-btn');
+        const data = {
+            nombre:       form.nombre.value.trim(),
+            whatsapp:     form.whatsapp.value.trim(),
+            fecha_prueba: form.fecha_prueba.value,
+            fecha:        new Date().toISOString(),
+            estado:       'Registrado'
+        };
+        btn.textContent = 'Enviando…';
+        btn.disabled = true;
+        fetch(APPS_SCRIPT_URL, {
+            method: 'POST', mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        }).finally(() => {
+            form.style.display = 'none';
+            document.getElementById('success-platelet').style.display = 'block';
+        });
+    }
+
+    // ── Copy donor info ──────────────────────────────────────
+    function copyDonorInfo(btn) {
+        const text =
+`Donación de Plaquetas para Iker Orozco Hernández
+
+📍 DATOS DEL PACIENTE Y UBICACIÓN
+• Paciente: Iker Orozco Hernández
+• Hospital: Star Médica Tlalnepantla (Nivel 1, Banco de Sangre)
+• Dirección: Sor Juana Inés de la Cruz No. 280, Tlalnepantla de Baz
+• Citas: 555321-7070 ext. 1134
+• Horario: Lunes a Domingo, 08:00 – 17:00 hrs
+
+✅ REQUISITOS PRINCIPALES
+• Identificación oficial vigente (INE o Pasaporte)
+• Edad entre 18–65 años y peso mayor a 50 kg
+• No haber tomado aspirinas, ibuprofeno o desinflamatorios en los últimos 3 días
+• Ayuno mínimo 4 hrs (se permite fruta o café negro; evitar lácteos, huevo y grasas)
+• No haber ingerido alcohol en las últimas 48 hrs
+• Estar sano (sin gripe, tos ni fiebre). Si tuviste hepatitis antes de los 10 años, sí puedes donar
+• Mínimo 1 año desde el último tatuaje, perforación o cirugía
+• No haber recibido vacunas en los últimos 30 días
+
+ℹ️ El proceso dura aprox. 90 minutos y es muy seguro.
+Donadores recurrentes pueden volver cada 2 semanas.
+
+Muchas gracias por su apoyo, disponibilidad y oraciones.`;
+
+        navigator.clipboard.writeText(text).then(() => {
+            const orig = btn.textContent;
+            btn.textContent = '✓ Copiado';
+            btn.style.background = '#5BA897';
+            setTimeout(() => {
+                btn.textContent = orig;
+                btn.style.background = '#0A2A43';
+            }, 2200);
+        });
+    }
+
+    // ── Admin ────────────────────────────────────────────────
+    function openAdmin() {
+        openModal('admin');
+        setTimeout(() => document.getElementById('pass-input').focus(), 300);
+    }
+
+    function checkPass() {
+        const val = document.getElementById('pass-input').value;
+        if (val === ADMIN_PASS) {
+            document.getElementById('pass-error').style.display = 'none';
+            document.getElementById('pass-wrap').style.display = 'none';
+            // Pre-fill form with current values
+            const d = loadData();
+            document.getElementById('a-actual').value  = d.actual;
+            document.getElementById('a-ingreso').value = d.ingreso;
+            document.getElementById('a-estado').value  = d.estado;
+            document.getElementById('a-fecha').value   = d.fecha;
+            document.getElementById('a-nota').value    = d.nota || '';
+            document.getElementById('admin-form').style.display = 'block';
+        } else {
+            document.getElementById('pass-error').style.display = 'block';
+            document.getElementById('pass-input').value = '';
+            document.getElementById('pass-input').focus();
+        }
+    }
+
+    function saveAdmin() {
+        const data = {
+            actual:  document.getElementById('a-actual').value  || DEFAULTS.actual,
+            ingreso: document.getElementById('a-ingreso').value || DEFAULTS.ingreso,
+            estado:  document.getElementById('a-estado').value  || DEFAULTS.estado,
+            fecha:   document.getElementById('a-fecha').value   || DEFAULTS.fecha,
+            nota:    document.getElementById('a-nota').value    || ''
+        };
+        localStorage.setItem('iker_data', JSON.stringify(data));
+        renderPage(data);
+        const saved = document.getElementById('admin-saved');
+        saved.style.display = 'block';
+        setTimeout(() => { saved.style.display = 'none'; closeModal('admin'); }, 1800);
+    }
+</script>
 
 </body>
 </html>
