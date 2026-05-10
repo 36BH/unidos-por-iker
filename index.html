@@ -30,36 +30,36 @@
 
         /* ── Thermometer ── */
         .thermo-card { background: white; border-radius: 12px; border: 1px solid #E8E8E8; padding: 14px 10px; display: flex; flex-direction: column; align-items: center; }
-        .thermo-title { font-size: 0.75rem; color: #444; text-align: center; margin-bottom: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; }
+        .thermo-title { font-size: 0.95rem; color: #444; text-align: center; margin-bottom: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; }
         .thermo-body { display: flex; gap: 8px; align-items: stretch; }
-        .thermo-labels { display: flex; flex-direction: column-reverse; justify-content: space-between; height: 170px; }
-        .thermo-labels span { font-size: 0.65rem; color: #444; line-height: 1.2; white-space: nowrap; font-weight: 500; }
+        .thermo-labels { display: flex; flex-direction: column-reverse; justify-content: space-between; height: 170px; padding: 4px 0; }
+        .thermo-labels span { font-size: 0.72rem; color: #444; line-height: 1.15; white-space: nowrap; font-weight: 500; }
         .lbl-critica { color: #D94B4B !important; font-weight: 600; }
         .lbl-normal  { color: #96C61C !important; font-weight: 600; }
         .thermo-marker-wrap { position: relative; width: 22px; height: 170px; }
         .segs-absolute { position: absolute; inset: 0; display: flex; flex-direction: column-reverse; border-radius: 12px; overflow: hidden; }
         .seg { width: 100%; }
-        .seg-critica  { background: #D94B4B; flex: 20; }
-        .seg-severa   { background: #C97B5C; flex: 30; }
-        .seg-moderada { background: #E8A84A; flex: 50; }
-        .seg-leve     { background: #A3C96A; flex: 50; }
-        .seg-normal   { background: #96C61C; flex: 300; }
+        .seg-critica  { background: #D94B4B; flex: 1; }
+        .seg-severa   { background: #E8722A; flex: 1; }
+        .seg-moderada { background: #E8A84A; flex: 1; }
+        .seg-leve     { background: #F5D020; flex: 1; }
+        .seg-normal   { background: #96C61C; flex: 2; }
         .marker-line { position: absolute; left: -5px; width: 32px; height: 3px; background: white; border-radius: 2px; box-shadow: 0 0 4px rgba(0,0,0,0.35); transition: bottom 0.5s ease; }
         .thermo-value { text-align: center; margin-top: 10px; }
         .thermo-number { font-size: 1.5rem; font-weight: 700; color: #D94B4B; }
         .thermo-badge { display: inline-block; color: white; font-size: 0.6rem; padding: 2px 8px; border-radius: 10px; margin-top: 3px; font-weight: 600; }
-        .thermo-sub { font-size: 0.68rem; color: #333; margin-top: 4px; line-height: 1.5; font-weight: 500; }
+        .thermo-sub { font-size: 0.88rem; color: #333; margin-top: 4px; line-height: 1.5; font-weight: 500; }
 
         /* ── Info grid ── */
         .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 18px; }
-        .info-box { background: white; border-radius: 10px; border: 1px solid #E8E8E8; padding: 12px; font-size: 0.85rem; line-height: 1.6; color: #2A2A2A; }
+        .info-box { background: white; border-radius: 10px; border: 1px solid #E8E8E8; padding: 14px; font-size: 1.1rem; line-height: 1.65; color: #2A2A2A; }
         .info-box.teal { border-left: 3px solid #96C61C; }
         .info-box.navy { border-left: 3px solid #0A2A43; }
         .info-box .label { font-size: 0.7rem; color: #444; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 5px; }
 
         /* ── CTA Buttons ── */
         .cta-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .btn { padding: 15px 10px; border-radius: 10px; border: none; font-family: 'Raleway', sans-serif; font-size: 0.82rem; font-weight: 600; cursor: pointer; line-height: 1.35; transition: opacity 0.15s, transform 0.1s; }
+        .btn { padding: 16px 10px; border-radius: 10px; border: none; font-family: 'Raleway', sans-serif; font-size: 1.05rem; font-weight: 600; cursor: pointer; line-height: 1.35; transition: opacity 0.15s, transform 0.1s; }
         .btn:active { transform: scale(0.97); }
         .btn-navy { background: #0A2A43; color: white; }
         .btn-teal  { background: #96C61C; color: white; }
@@ -94,7 +94,7 @@
         .success-msg strong { display: block; font-size: 1rem; color: #0A2A43; margin-bottom: 6px; }
 
         /* Disclaimer */
-        .disclaimer { font-size: 0.68rem; color: #aaa; text-align: center; margin-top: 20px; line-height: 1.6; }
+        .disclaimer { font-size: 0.88rem; color: #aaa; text-align: center; margin-top: 20px; line-height: 1.6; }
 
         /* ── Admin trigger (pie de página, discreta) ── */
         .admin-trigger { display: block; text-align: center; margin-top: 28px; color: #666; font-size: 1.6rem; cursor: pointer; user-select: none; }
@@ -152,14 +152,14 @@
     <!-- Thermometer -->
     <div class="thermo-card" style="margin-bottom:14px;">
         <div class="thermo-title">Niveles de Plaquetas</div>
-        <div style="display:flex; gap:16px; align-items:center; justify-content:center;">
+        <div style="display:flex; gap:20px; align-items:center; justify-content:center; padding: 0 12px;">
             <div style="display:flex; gap:8px; align-items:stretch;">
                 <div class="thermo-labels">
-                    <span class="lbl-critica">Crítica<br>&lt;20K</span>
-                    <span>Severa<br>20–50K</span>
-                    <span>Moderada<br>50–100K</span>
-                    <span>Leve<br>100–150K</span>
-                    <span class="lbl-normal">Normal<br>150–450K</span>
+                    <span class="lbl-critica">Crítica<br><small style="font-size:0.65rem;">&lt;20K</small></span>
+                    <span>Severa<br><small style="font-size:0.65rem;">20–50K</small></span>
+                    <span>Moderada<br><small style="font-size:0.65rem;">50–100K</small></span>
+                    <span>Leve<br><small style="font-size:0.65rem;">100–150K</small></span>
+                    <span class="lbl-normal">Normal<br><small style="font-size:0.65rem;">150–450K</small></span>
                 </div>
                 <div class="thermo-marker-wrap">
                     <div class="segs-absolute">
