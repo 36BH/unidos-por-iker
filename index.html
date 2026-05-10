@@ -142,9 +142,7 @@
     <div class="top-grid">
         <div class="photo-col">
             <div class="photo-card">
-                <!-- Sube iker.jpg al mismo folder y descomenta esta línea: -->
-                <!-- <img src="iker.jpg" alt="Iker Orozco Hernández"> -->
-                <div class="photo-placeholder">📷 Sube <strong>iker.jpg</strong><br>al mismo folder</div>
+                <img src="iker.jpg" alt="Iker Orozco Hernández">
             </div>
             <div class="visit-box">
                 <strong>Iker tiene su celular</strong> y le anima recibir visitas
@@ -288,8 +286,13 @@
             <button class="modal-close" onclick="closeModal('platelet')">✕</button>
         </div>
         <p class="modal-sub">Registra tu intención. La familia te contactará con los requisitos del banco de sangre, compatibilidad y fecha disponible.</p>
+        <button onclick="window.open('https://forms.gle/4pWnQot44o1CwvTW7','_blank')" class="submit-btn" style="width:100%; border:none; cursor:pointer; margin-bottom:10px;">
+            Enviar mis datos
+        </button>
+        <p style="margin-bottom:16px; font-size:0.78rem; color:#2A2A2A; text-align:center; font-weight:600;">Nos pondremos en contacto contigo en cuanto se necesiten donadores.</p>
+
         <!-- Info de donación -->
-        <div id="donor-info" style="background:#f0f8f6; border:1.5px solid #5BA897; border-radius:12px; padding:14px 16px; margin-bottom:16px; font-size:0.78rem; line-height:1.65; color:#2A2A2A;">
+        <div id="donor-info" style="background:#f0f8f6; border:1.5px solid #5BA897; border-radius:12px; padding:14px 16px; font-size:0.78rem; line-height:1.65; color:#2A2A2A;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
                 <strong style="font-size:0.85rem; color:#0A2A43;">Donación de Plaquetas para Iker Orozco Hernández</strong>
                 <button onclick="copyDonorInfo(this)" style="background:#0A2A43; color:white; border:none; border-radius:6px; padding:5px 12px; font-size:0.68rem; cursor:pointer; font-family:'Raleway',sans-serif; white-space:nowrap; flex-shrink:0;">Copiar</button>
@@ -321,11 +324,6 @@
                 Muchas gracias por su apoyo, disponibilidad y oraciones.
             </div>
         </div>
-
-        <a href="https://forms.gle/4pWnQot44o1CwvTW7" target="_blank" class="submit-btn" style="display:block; text-align:center; text-decoration:none; margin-top:4px;">
-            Enviar mis datos
-        </a>
-        <p style="margin-top:14px; font-size:0.78rem; color:#2A2A2A; text-align:center; font-weight:600;">Nos pondremos en contacto contigo en cuanto se necesiten donadores.</p>
     </div>
 </div>
 
